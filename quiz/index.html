@@ -105,8 +105,12 @@ footer a{color:var(--mint)}
 .st td.pre{white-space:pre;background:#fef9c3}
 .dots{display:inline-flex;gap:5px;direction:ltr}
 .dots i{width:12px;height:12px;border-radius:3px;background:rgba(255,255,255,.18)}
-.dots i.ok{background:var(--line)} .dots i.no{background:var(--bad)} .dots i.now{box-shadow:0 0 0 2px var(--mint)}
+.dots i.ok{background:var(--line)} .dots i.sk{background:var(--warn)} .dots i.no{background:var(--bad)} .dots i.now{box-shadow:0 0 0 2px var(--mint)}
 
+
+.idk{all:unset;cursor:pointer;justify-self:start;color:var(--mute);font-weight:700;font-size:16px;padding:6px 12px;border:2px dashed rgba(255,255,255,.22);border-radius:12px}
+.idk:hover,.idk:focus-visible{color:var(--ink);border-color:var(--mint);outline:none}
+.idk[disabled]{opacity:.35;cursor:default}
 @media (min-width:900px){
   body{font-size:19px;padding-block:36px 64px}
   .wrap{max-width:1080px}
@@ -115,12 +119,13 @@ footer a{color:var(--mint)}
   .intro h1{font-size:64px}
   .intro .lead{font-size:22px}
   .qc{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:32px;row-gap:16px;padding:30px 32px;
-      grid-template-areas:"nav nav" "q q" "sh opts" "sh why" "sh foot";align-items:start}
+      grid-template-areas:"nav nav" "q q" "sh opts" "sh idk" "sh why" "sh foot";align-items:start}
   .qc>.nav:first-child{grid-area:nav}
   .qc>.q{grid-area:q;font-size:28px}
   .qc>.sh{grid-area:sh}
   .qc>.opts{grid-area:opts}
   .qc>.why{grid-area:why}
+  .qc>.idk{grid-area:idk}
   .qc>.foot{grid-area:foot}
   .qc .st{font-size:18px}
   .qc .st td{height:44px}
@@ -227,7 +232,7 @@ function pickSet(l){
 }
 function dots(){
   const res=log.filter(x=>x.l===lv);
-  return `<span class="dots" aria-hidden="true">${Array.from({length:PER},(_,c)=>`<i class="${res[c]?(res[c].ok?'ok':'no'):(c===res.length&&!ended?'now':'')}"></i>`).join("")}</span>`;
+  return `<span class="dots" aria-hidden="true">${Array.from({length:PER},(_,c)=>`<i class="${res[c]?(res[c].ok?'ok':res[c].idk?'sk':'no'):(c===res.length&&!ended?'now':'')}"></i>`).join("")}</span>`;
 }
 function drawRow(){}
 function send(payload){
@@ -238,7 +243,7 @@ function intro(){
   ended=false; log = null; lv = 0; drawRow();
   app.innerHTML = `<section class="wrap intro" style="gap:18px">
     <h1>وش مستواك في إكسل؟</h1>
-    <p class="lead">تبدأ من السهل وتصعب معك. كل مستوى ٥ أسئلة، وإذا جبت ٤ منها صح تنتقل للي بعده. وفي الآخر تعرف مستواك ووش تتعلم بعدها.</p>
+    <p class="lead">تبدأ من السهل وتصعب معك. كل مستوى ٥ أسئلة، وإذا جبت ٤ منها صح تنتقل للي بعده. إذا ما تعرف الجواب اضغط «ما أعرف» بدل التخمين، عشان تطلع نتيجتك دقيقة. وفي الآخر تعرف مستواك ووش تتعلم بعدها.</p>
         <div><button class="btn" id="go">ابدأ الاختبار</button></div>
     <p class="fine">٥ مستويات و١٠٠ سؤال، وكل مرة تطلع لك أسئلة مختلفة.</p>
   </section>`;
@@ -252,18 +257,21 @@ function question(){
     <p class="q">${esc(x.q)}</p>
     ${sheetHTML(BANK.indexOf(x),x.c)}
     <div class="opts">${x.o.map((t,k)=>`<button class="opt" data-k="${k}"><span class="k">${"أبجد"[k]}</span><span class="t" dir="auto">${esc(t)}</span></button>`).join("")}</div>
+    <button class="idk" id="idk">ما أعرف 🤷</button>
     <p class="why" id="why" hidden></p>
     <div class="nav foot"><span></span><button class="btn" id="next" hidden>التالي</button></div>
   </section>`;
   app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  document.getElementById("idk").onclick=()=>pick(-1);
 }
 function pick(k){
   if(locked) return; locked=true;
   const x=set[idx], ok=k===x.a;
-  log.push({l:lv,ok,id:BANK.indexOf(x)});
+  log.push({l:lv,ok,idk:k<0,id:BANK.indexOf(x)});
+  document.getElementById("idk").disabled=true;
   app.querySelectorAll(".opt").forEach((b,j)=>{b.disabled=true; if(j===x.a)b.classList.add("right"); else if(j===k)b.classList.add("wrong");});
   const why=document.getElementById("why");
-  why.textContent=(ok?"صح ✓ ":"الصح هو المظلل بالأخضر. ")+x.w; why.classList.toggle("badw",!ok); why.hidden=false;
+  why.textContent=(ok?"صح ✓ ":k<0?"ولا يهمك، هذا الجواب: ":"الصح هو المظلل بالأخضر. ")+x.w; why.classList.toggle("badw",!ok); why.hidden=false;
   const wrong = log.filter(r=>r.l===lv && !r.ok).length, done = log.filter(r=>r.l===lv).length;
   const failed = wrong > PER-PASS, finished = done===PER;
   const nx=document.getElementById("next"); nx.hidden=false;
@@ -279,7 +287,7 @@ function pick(k){
 function result(passed){
   ended=true; const L=RESULT[passed], score=log.filter(r=>r.ok).length;
   drawRow();
-  send({type:"result", sid, score, asked:log.length, level:L.name, passed, answers:log.map(r=>r.id+(r.ok?"+":"-")).join(" "), ua:navigator.language||""});
+  send({type:"result", sid, score, asked:log.length, level:L.name, passed, answers:log.map(r=>r.id+(r.ok?"+":r.idk?"?":"-")).join(" "), ua:navigator.language||""});
   app.innerHTML = `<section class="wrap res" style="gap:20px">
     <div class="card">
       <p class="level"><small>مستواك</small>${L.name}</p>
