@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>وش مستواك في إكسل؟</title>
-<meta name="description" content="١٠ أسئلة من الدوام تعرف منها مستواك في إكسل ووش تتعلم بعدها. من إبراهيم تِك.">
+<meta name="description" content="١٠ أسئلة تعرف منها مستواك في إكسل ووش تتعلم بعدها. من إبراهيم تِك.">
 <meta property="og:title" content="وش مستواك في إكسل؟">
 <meta property="og:description" content="١٠ أسئلة، دقيقتين، وتعرف مستواك ووش تتعلم بعدها.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -101,7 +101,7 @@ footer a{color:var(--mint)}
 
   <main id="app"></main>
 
-  <footer>أسئلة من مقاطع <a href="https://www.tiktok.com/@ibrahim.tech47" target="_blank" rel="noopener">@ibrahim.tech47</a></footer>
+  <footer>اختبار من <a href="https://www.tiktok.com/@ibrahim.tech47" target="_blank" rel="noopener">@ibrahim.tech47</a></footer>
 </div>
 
 <script>
@@ -113,13 +113,13 @@ const WA_NUMBER = "";
 const Q = [
  {lv:1,q:"كيف تبدأ أي معادلة في إكسل؟",o:["<bdi>+</bdi>","<bdi>=</bdi>","<bdi>#</bdi>","تكتبها على طول"],a:1,w:"أي معادلة تبدأ بـ = وإلا إكسل يحسبها نص."},
  {lv:1,q:"إذا A1 فيها 5 و A2 فيها 3، وش يطلع؟",c:"=A1+A2",o:["<bdi>53</bdi>","<bdi>8</bdi>","<bdi>A1+A2</bdi>","<bdi>#VALUE!</bdi>"],a:1,w:"يجمع اللي داخل الخليتين: 5 + 3 = 8."},
- {lv:1,q:"أسرع طريقة تجمع عمود أرقام؟",o:["<bdi>Ctrl + S</bdi>","<bdi>F4</bdi>","<bdi>Alt + =</bdi>","تكتب الأرقام في الآلة الحاسبة"],a:2,w:"Alt + = يكتب لك SUM ويحدد الأرقام لحاله."},
+ {lv:1,q:"تبي صف العناوين يبقى ظاهر وأنت تنزل في الملف. وش تستخدم؟",o:["تجميد الأجزاء (<bdi>Freeze Panes</bdi>)","دمج الخلايا","تكبير الخط","فرز البيانات"],a:0,w:"عرض ← تجميد الأجزاء ← تجميد الصف العلوي."},
  {lv:1,q:"تبي سطرين داخل نفس الخلية، وش تضغط؟",o:["<bdi>Enter</bdi>","<bdi>Alt + Enter</bdi>","<bdi>Tab</bdi>","<bdi>Ctrl + Z</bdi>"],a:1,w:"Alt + Enter ينزّلك سطر وأنت داخل نفس الخلية."},
  {lv:2,q:"إذا B2 فيها 50، وش تكتب المعادلة؟",c:'=IF(B2>=50,"ناجح","راسب")',o:["ناجح","راسب","<bdi>FALSE</bdi>","خطأ في المعادلة"],a:0,w:"الشرط ≥ 50، و 50 تحقق الشرط فتطلع «ناجح»."},
- {lv:2,q:"وش يسوي <bdi>Ctrl + T</bdi>؟",o:["يطبع الصفحة","يحذف المكرر","يحوّل البيانات لجدول ذكي بفلتر وألوان","يترجم النص"],a:2,w:"جدول ذكي: ألوان وفلتر وصف إجمالي، وأي صف تضيفه ينضم لحاله."},
+ {lv:2,q:"تبي تعرف كم مرة تكررت «الرياض» في عمود المدن. أي دالة؟",o:["<bdi>SUM</bdi>","<bdi>COUNTIF</bdi>","<bdi>AVERAGE</bdi>","<bdi>LEN</bdi>"],a:1,w:'=COUNTIF(B:B,"الرياض") تعد الخلايا اللي تطابق الشرط.'},
  {lv:2,q:"سحبت المعادلة لتحت وطلعت أصفار. وش التعديل؟",c:"=B2*F1",o:["<bdi>=B2*F2</bdi>","<bdi>=B2*$F$1</bdi>","<bdi>=$B$2*F1</bdi>","<bdi>=SUM(B2*F1)</bdi>"],a:1,w:"$F$1 يثبّت الخلية، تضغط F4 وتنحط الدولارات."},
+ {lv:2,q:"عندك ٥٠٠٠ عملية بيع، وتبي مجموع كل مدينة في ثواني بدون معادلات؟",o:["فلتر وتجمع بالآلة الحاسبة","جدول محوري (<bdi>Pivot Table</bdi>)","تنسيق شرطي","تقسيم النص"],a:1,w:"الجدول المحوري يلخص آلاف الصفوف بالسحب والإفلات."},
  {lv:3,q:"وش تقدر تسويه XLOOKUP وما تقدر عليه VLOOKUP؟",o:["تجمع الأرقام","تبحث في عمود على يسار عمود النتيجة","تلوّن الخلايا","تشتغل بدون معادلة"],a:1,w:"XLOOKUP تبحث يمين ويسار، و VLOOKUP يمين بس."},
- {lv:3,q:"في هالمعادلة، النجمة <bdi>*</bdi> بين الشرطين معناها؟",c:'=FILTER(A2:C99,(B2:B99="الرياض")*(C2:C99>5000))',o:["أو","و (لازم الشرطين)","ضرب الأرقام بس","تنسيق"],a:1,w:"* = و، و + = أو."},
  {lv:3,q:"عندك ١٢ ملف في فولدر، تبي تجمعها وتتحدث لحالها كل شهر؟",o:["نسخ ولصق كل شهر","<bdi>Get Data</bdi> ← من فولدر (<bdi>Power Query</bdi>)","تنسيق شرطي","ماكرو تسجله كل مرة"],a:1,w:"Power Query يسحب الفولدر كامل، وكل شهر تضغط Refresh بس."}
 ];
 
@@ -153,7 +153,7 @@ function send(payload){
 function intro(){
   app.innerHTML = `<section class="wrap" style="gap:18px">
     <h1>وش مستواك في إكسل؟</h1>
-    <p class="lead">١٠ أسئلة من الدوام، تاخذ دقيقتين. كل إجابة صح تلوّن لك خلية، وفي الآخر تعرف مستواك ووش تتعلم بعدها.</p>
+    <p class="lead">١٠ أسئلة تاخذ دقيقتين. كل إجابة صح تلوّن لك خلية، وفي الآخر تعرف مستواك ووش تتعلم بعدها.</p>
     <div class="fbar"><span class="fx">fx</span><span>=مستواك(A1:J1)</span></div>
     <div><button class="btn" id="go">ابدأ الاختبار</button></div>
   </section>`;
@@ -193,7 +193,7 @@ function levelOf(){
   const score = picks.filter((p,k)=>p===Q[k].a).length;
   const by = [1,2,3].map(l=>Q.map((q,k)=>q.lv===l && picks[k]===q.a).filter(Boolean).length);
   let lv = 1;
-  if(by[0]>=3 && by[1]>=2) lv = 2;
+  if(by[0]>=3 && by[1]>=3) lv = 2;
   if(lv===2 && by[2]>=2) lv = 3;
   return {score, lv};
 }
@@ -214,9 +214,9 @@ function result(){
       <h2>نبهني أول ما تنزل دورة مستوى «${L.name}»</h2>
       <form class="form" id="lead" novalidate>
         <label class="f" for="nm">اسمك<input id="nm" type="text" autocomplete="given-name" maxlength="60"></label>
-        <label class="f" for="wa">رقم الواتساب<input id="wa" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" maxlength="20"></label>
-        <label class="f" for="em">الإيميل (اختياري)<input id="em" type="email" autocomplete="email" maxlength="120"></label>
-        <label class="consent" for="ok"><input id="ok" type="checkbox"><span>أوافق إن إبراهيم تِك يرسل لي على الواتساب أو الإيميل عن الدورات والعروض. أقدر ألغي متى ما بغيت برسالة «إلغاء».</span></label>
+        <label class="f" for="em">إيميلك<input id="em" type="email" autocomplete="email" maxlength="120"></label>
+        <label class="f" for="wa">رقم الواتساب (اختياري)<input id="wa" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" maxlength="20"></label>
+        <label class="consent" for="ok"><input id="ok" type="checkbox"><span>أوافق إن إبراهيم تِك يرسل لي على الإيميل أو الواتساب عن الدورات والعروض. أقدر ألغي متى ما بغيت برسالة «إلغاء».</span></label>
         <p class="err" id="err" hidden></p>
         <button class="btn" type="submit" id="sb">نبهني</button>
         <p class="fine">نستخدم بياناتك لتنبيهك بالدورات بس، وما نعطيها لأحد. نتيجة الاختبار تنحفظ بدون اسم عشان نعرف وش المقاطع اللي تفيدكم.</p>
@@ -239,8 +239,8 @@ function result(){
     const err=document.getElementById("err");
     const fail=t=>{err.textContent=t;err.hidden=false};
     if(!nm) return fail("اكتب اسمك.");
-    if(wa.length<9) return fail("اكتب رقم واتساب صحيح، مثل 05xxxxxxxx.");
-    if(em && !/^\S+@\S+\.\S+$/.test(em)) return fail("الإيميل مو صحيح، صححه أو خله فاضي.");
+    if(!/^\S+@\S+\.\S+$/.test(em)) return fail("اكتب إيميل صحيح، مثل name@gmail.com.");
+    if(wa && wa.length<9) return fail("رقم الواتساب ناقص، صححه أو خله فاضي.");
     if(!ok) return fail("علّم على الموافقة عشان نقدر نرسل لك التنبيه.");
     err.hidden=true;
     const sb=document.getElementById("sb"); sb.disabled=true; sb.textContent="جاري الحفظ…";
@@ -248,10 +248,9 @@ function result(){
     send({type:"lead", sid, code, name:nm, whatsapp:wa, email:em, consent:true, level:L.name, score}).then(()=>{
       const waText = encodeURIComponent(`أؤكد رقمي للتنبيه بدورة إكسل (${L.name}). كود التأكيد: ${code}`);
       document.getElementById("lead").innerHTML = `
-        <p class="done">باقي خطوة وحدة: أكّد ${em?"رقمك وإيميلك":"رقمك"}</p>
-        <p style="margin:0">اضغط الزر، ويفتح لك الواتساب برسالة جاهزة فيها كود التأكيد <bdi class="score">${code}</bdi>. أرسلها بس.</p>
-        ${WA_NUMBER?`<a class="btn" href="https://wa.me/${WA_NUMBER}?text=${waText}" target="_blank" rel="noopener">أكّد رقمي بالواتساب</a>`:`<p class="fine">زر التأكيد يشتغل بعد ما نضيف رقم الواتساب.</p>`}
-        ${em?`<p class="fine">ووصلك إيميل فيه رابط تأكيد على <bdi>${em.replace(/</g,"")}</bdi>. إذا ما لقيته شف الرسائل غير المرغوب فيها (Spam).</p>`:""}
+        <p class="done">باقي خطوة وحدة: أكّد إيميلك</p>
+        <p style="margin:0">أرسلنا رابط تأكيد على <bdi>${em.replace(/</g,"")}</bdi>. افتحه واضغط «أكّد إيميلي». إذا ما لقيته شف الرسائل غير المرغوب فيها (Spam).</p>
+        ${wa&&WA_NUMBER?`<p style="margin:0">ولو تبي التنبيه على الواتساب بعد، اضغط الزر وأرسل الرسالة الجاهزة فيها كود التأكيد <bdi class="score">${code}</bdi>.</p><a class="btn" href="https://wa.me/${WA_NUMBER}?text=${waText}" target="_blank" rel="noopener">أكّد رقمي بالواتساب</a>`:""}
         <p class="fine">إذا ما أكدت، ما نرسل لك شي.</p>`;
     });
   };
