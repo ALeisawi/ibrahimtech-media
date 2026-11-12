@@ -36,6 +36,32 @@ function emailHtml_(name, level, url) {
   '</table></td></tr></table></body></html>';
 }
 
+const LEAD_HEADERS = ['آخر تحديث','أول تسجيل','الاسم','إيميل','المستوى','الصح','عدد الأسئلة','عدد المحاولات','موافقة','إيميل مؤكد','رمز الإيميل','الجلسة'];
+const C = {}; LEAD_HEADERS.forEach((h, i) => C[h] = i + 1);
+
+// تبويب المسجلين: لو فيه نسخة قديمة (فيها الواتساب) نغيّر اسمها ونبدأ تبويب جديد
+function leads_() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  let sh = ss.getSheetByName('المسجلين');
+  if (sh && sh.getLastColumn() > 0 && sh.getRange(1, 1, 1, sh.getLastColumn()).getValues()[0].indexOf('واتساب') >= 0) {
+    sh.setName('المسجلين القديم ' + Utilities.formatDate(new Date(), 'Asia/Riyadh', 'yyyy-MM-dd HH:mm'));
+    sh = null;
+  }
+  if (!sh) { sh = ss.insertSheet('المسجلين'); sh.appendRow(LEAD_HEADERS); sh.setFrozenRows(1); }
+  return sh;
+}
+
+function sendConfirm_(email, name, level, token) {
+  if (MailApp.getRemainingDailyQuota() <= 5) return;
+  MailApp.sendEmail({
+    to: email,
+    name: 'إبراهيم تِك | إكسل',
+    subject: 'باقي ضغطة وحدة ويوصلك كود الخصم 🎁',
+    body: 'أكّد إيميلك من هنا: ' + CONFIRM_PAGE + '?t=' + token,
+    htmlBody: emailHtml_(html_(name).slice(0, 60), level, CONFIRM_PAGE + '?t=' + token)
+  });
+}
+
 function doPost(e) {
   const d = JSON.parse((e && e.postData && e.postData.contents) || '{}');
   const now = new Date();
@@ -43,34 +69,52 @@ function doPost(e) {
   if (d.type === 'result') {
     sheet_('النتائج', ['الوقت','الجلسة','الصح','عدد الأسئلة','المستوى','الإجابات','اللغة'])
       .appendRow([now, cell_(d.sid, 20), Number(d.score) || 0, Number(d.asked) || 0, level, cell_(d.answers, 400), cell_(d.ua, 20)]);
-  } else if (d.type === 'lead') {
-    const email = String(d.email || '').trim().slice(0, 120);
-    if (!/^\S+@\S+\.\S+$/.test(email) || !d.consent) return ContentService.createTextOutput('bad');
-    const token = Utilities.getUuid();
-    const wa = String(d.whatsapp || '').replace(/[^\d+]/g, '').slice(0, 20);
-    sheet_('المسجلين', ['الوقت','الجلسة','الاسم','واتساب','إيميل','المستوى','الدرجة','موافقة','كود الواتساب','واتساب مؤكد','إيميل مؤكد','رمز الإيميل'])
-      .appendRow([now, cell_(d.sid, 20), cell_(d.name, 60), cell_(wa, 20), cell_(email), level, Number(d.score) || 0,
-                  'نعم', cell_(d.code, 6), wa ? 'لا' : '', 'لا', token]);
-    if (MailApp.getRemainingDailyQuota() > 5) {
-      MailApp.sendEmail({
-        to: email,
-        name: 'إبراهيم تِك | إكسل',
-        subject: 'باقي ضغطة وحدة ويوصلك كود الخصم 🎁',
-        body: 'أكّد إيميلك من هنا: ' + CONFIRM_PAGE + '?t=' + token,
-        htmlBody: emailHtml_(html_(d.name).slice(0, 60), level, CONFIRM_PAGE + '?t=' + token)
-      });
-    }
+    return ContentService.createTextOutput('ok');
   }
+  if (d.type !== 'lead') return ContentService.createTextOutput('bad');
+  const email = String(d.email || '').trim().toLowerCase().slice(0, 120);
+  if (!/^\S+@\S+\.\S+$/.test(email) || !d.consent) return ContentService.createTextOutput('bad');
+  const lock = LockService.getScriptLock(); lock.waitLock(10000);
+  try {
+    const sh = leads_();
+    const n = sh.getLastRow();
+    const emails = n > 1 ? sh.getRange(2, C['إيميل'], n - 1, 1).getValues().map(r => String(r[0]).replace(/^'/, '').toLowerCase()) : [];
+    const i = emails.indexOf(email);
+    if (i >= 0) {
+      // نفس الإيميل: نحدّث لآخر نتيجة
+      const r = i + 2;
+      const row = sh.getRange(r, 1, 1, LEAD_HEADERS.length).getValues()[0];
+      row[C['آخر تحديث'] - 1] = now;
+      row[C['الاسم'] - 1] = cell_(d.name, 60);
+      row[C['المستوى'] - 1] = level;
+      row[C['الصح'] - 1] = Number(d.score) || 0;
+      row[C['عدد الأسئلة'] - 1] = Number(d.asked) || 0;
+      row[C['عدد المحاولات'] - 1] = (Number(row[C['عدد المحاولات'] - 1]) || 1) + 1;
+      row[C['الجلسة'] - 1] = cell_(d.sid, 20);
+      sh.getRange(r, 1, 1, LEAD_HEADERS.length).setValues([row]);
+      if (row[C['إيميل مؤكد'] - 1] !== 'نعم') sendConfirm_(email, d.name, level, row[C['رمز الإيميل'] - 1]);
+    } else {
+      const token = Utilities.getUuid();
+      sh.appendRow([now, now, cell_(d.name, 60), cell_(email), level, Number(d.score) || 0, Number(d.asked) || 0, 1, 'نعم', 'لا', token, cell_(d.sid, 20)]);
+      sendConfirm_(email, d.name, level, token);
+    }
+  } finally { lock.releaseLock(); }
   return ContentService.createTextOutput('ok');
 }
 
 function confirm_(t) {
   if (!t) return false;
-  const sh = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('المسجلين');
-  if (!sh) return false;
-  const v = sh.getDataRange().getValues();
-  for (let r = 1; r < v.length; r++) {
-    if (v[r][11] === t) { sh.getRange(r + 1, 11).setValue('نعم'); return true; }
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  // نشيك التبويب الجديد، والقديم للروابط اللي انرسلت قبل التحديث
+  const tabs = ss.getSheets().filter(s => s.getName().indexOf('المسجلين') === 0);
+  for (const sh of tabs) {
+    const v = sh.getDataRange().getValues();
+    if (v.length < 2) continue;
+    const tc = v[0].indexOf('رمز الإيميل'), cc = v[0].indexOf('إيميل مؤكد');
+    if (tc < 0 || cc < 0) continue;
+    for (let r = 1; r < v.length; r++) {
+      if (v[r][tc] === t) { sh.getRange(r + 1, cc + 1).setValue('نعم'); return true; }
+    }
   }
   return false;
 }
@@ -79,12 +123,11 @@ function doGet(e) {
   const p = (e && e.parameter) || {};
   const ok = confirm_(p.t);
   if (p.json) return ContentService.createTextOutput(JSON.stringify({ ok: ok })).setMimeType(ContentService.MimeType.JSON);
-  // روابط الإيميلات القديمة: نحولها لصفحة التأكيد بالهوية
   return HtmlService.createHtmlOutput('<script>window.top.location.href=' + JSON.stringify(CONFIRM_PAGE + '?t=' + encodeURIComponent(p.t || '')) + '</script>');
 }
 
 function setup() {
   sheet_('النتائج', ['الوقت','الجلسة','الصح','عدد الأسئلة','المستوى','الإجابات','اللغة']);
-  sheet_('المسجلين', ['الوقت','الجلسة','الاسم','واتساب','إيميل','المستوى','الدرجة','موافقة','كود الواتساب','واتساب مؤكد','إيميل مؤكد','رمز الإيميل']);
+  leads_();
   MailApp.getRemainingDailyQuota();
 }
