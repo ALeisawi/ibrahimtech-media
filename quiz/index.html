@@ -267,13 +267,14 @@ function result(passed){
     <ul class="list">${L.vids.map(v=>`<li><a href="${V(v[1])}" target="_blank" rel="noopener"><span>${v[0]}</span><span>شاهد</span></a></li>`).join("")}</ul>
     <div class="card">
       <h2>نبهني أول ما تنزل دورة مستوى «${L.name}»</h2>
+      <p style="margin:0;color:var(--mint);font-weight:800">🎁 سجّل ويوصلك كود خصم خاص على الدورة أول ما تنزل.</p>
       <form class="form" id="lead" novalidate>
         <label class="f" for="nm">اسمك<input id="nm" type="text" autocomplete="given-name" maxlength="60"></label>
         <label class="f" for="em">إيميلك<input id="em" type="email" autocomplete="email" maxlength="120"></label>
         <label class="f" for="wa">رقم الواتساب (اختياري)<input id="wa" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" maxlength="20"></label>
-        <label class="consent" for="ok"><input id="ok" type="checkbox"><span>أوافق إن إبراهيم تِك يرسل لي على الإيميل أو الواتساب عن الدورات والعروض. أقدر ألغي متى ما بغيت.</span></label>
+        <label class="consent" for="ok"><input id="ok" type="checkbox"><span>أوافق إن إبراهيم تِك يرسل لي على الإيميل أو الواتساب عن الدورات والعروض وأكواد الخصم. أقدر ألغي متى ما بغيت.</span></label>
         <p class="err" id="err" hidden></p>
-        <button class="btn" type="submit" id="sb">نبهني</button>
+        <button class="btn" type="submit" id="sb">نبهني وأرسل كود الخصم</button>
         <p class="fine">نستخدم بياناتك لتنبيهك بالدورات بس، وما نعطيها لأحد. نتيجة الاختبار تنحفظ بدون اسم عشان نعرف وش المحتوى اللي يفيدكم.</p>
       </form>
     </div>
@@ -299,7 +300,7 @@ function result(passed){
     send({type:"lead", sid, code, name:nm, whatsapp:wa, email:em, consent:true, level:L.name, score}).then(()=>{
       const waText=encodeURIComponent(`أؤكد رقمي للتنبيه بدورة إكسل (${L.name}). كود التأكيد: ${code}`);
       document.getElementById("lead").innerHTML=`
-        <p class="done">باقي خطوة وحدة: أكّد إيميلك</p>
+        <p class="done">باقي خطوة وحدة: أكّد إيميلك عشان يوصلك كود الخصم 🎁</p>
         <p style="margin:0">أرسلنا رابط تأكيد على <bdi>${esc(em)}</bdi>. افتحه واضغط «أكّد إيميلي». إذا ما لقيته شف الرسائل غير المرغوب فيها (Spam).</p>
         ${wa&&WA_NUMBER?`<p style="margin:0">ولو تبي التنبيه على الواتساب بعد، اضغط الزر وأرسل الرسالة الجاهزة فيها كود التأكيد <bdi class="score">${code}</bdi>.</p><a class="btn" href="https://wa.me/${WA_NUMBER}?text=${waText}" target="_blank" rel="noopener">أكّد رقمي بالواتساب</a>`:""}
         <p class="fine">إذا ما أكدت، ما نرسل لك شي.</p>`;
