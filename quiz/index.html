@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>وش مستواك في إكسل؟</title>
+<meta name="description" content="١٠ أسئلة من الدوام تعرف منها مستواك في إكسل ووش تتعلم بعدها. من إبراهيم تِك.">
+<meta property="og:title" content="وش مستواك في إكسل؟">
+<meta property="og:description" content="١٠ أسئلة، دقيقتين، وتعرف مستواك ووش تتعلم بعدها.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Montserrat:wght@600;700;800&display=swap">
+<style>
+/* Layout: one column, phone first. The sheet grid is the motif: the score fills a row of 10 cells (A1:J1). */
+:root{
+  --bg:#0b1220; --panel:#0B1F4B; --line:#21C063; --mint:#7DFAA6;
+  --ink:#e8eefc; --mute:#9fb0d0; --cell:#ffffff; --cellink:#111827; --grid:#d1d5db;
+  --bad:#f87171; --warn:#facc15;
+  --ar:"Cairo",system-ui,sans-serif; --lat:"Montserrat","Cairo",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{margin:0;font-family:var(--ar);font-size:18px;line-height:1.7;
+  background:radial-gradient(120% 60% at 50% 0%,#13213d 0%,var(--bg) 70%) fixed;
+  padding-block:24px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-weight:800;font-size:18px}
+.brand b{color:var(--line);font-weight:800}
+.badge{font:700 13px var(--lat);border:2px solid var(--line);border-radius:8px;padding:2px 10px;background:var(--panel);direction:ltr;display:inline-flex;gap:6px;align-items:center}
+.badge i{display:grid;grid-template-columns:repeat(3,4px);gap:1px}
+.badge i span{width:4px;height:4px;background:var(--line)}
+h1{font-size:clamp(34px,9vw,48px);line-height:1.25;margin:6px 0 0;font-weight:900;text-wrap:balance}
+.lead{color:var(--mute);margin:0;font-size:19px}
+
+/* the score row: the one bold element */
+.row{display:grid;grid-template-columns:28px repeat(10,1fr);direction:ltr;border-radius:10px;overflow:hidden;background:var(--cell);box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.row .h{background:#e5e7eb;color:#4b5563;font:700 11px var(--lat);text-align:center;padding:3px 0;border-left:1px solid var(--grid)}
+.row .rn{background:#e5e7eb;color:#4b5563;font:700 11px var(--lat);display:flex;align-items:center;justify-content:center;grid-row:2}
+.row .c{height:34px;border-left:1px solid var(--grid);border-top:1px solid var(--grid);background:var(--cell);transition:background .35s ease}
+.row .c.ok{background:var(--line)}
+.row .c.no{background:#fee2e2}
+.row .c.now{box-shadow:inset 0 0 0 3px var(--line)}
+
+.fbar{display:flex;gap:12px;align-items:center;background:#f3f4f6;color:var(--cellink);border-radius:12px;padding:10px 14px;font:600 15px "Liberation Mono",var(--lat);direction:ltr;overflow-x:auto;white-space:nowrap}
+.fbar .fx{color:#6b7280;font-style:italic;font-family:serif}
+
+.card{background:var(--panel);border:3px solid var(--line);border-radius:22px;padding:22px 20px;display:flex;flex-direction:column;gap:16px}
+.q{font-size:23px;font-weight:800;line-height:1.5;margin:0;text-wrap:balance}
+.code{direction:ltr;unicode-bidi:isolate;display:block;background:var(--cell);color:var(--cellink);border-radius:10px;padding:10px 14px;font:700 16px "Liberation Mono",var(--lat);overflow-x:auto;white-space:nowrap}
+.opts{display:grid;gap:10px}
+.opt{all:unset;cursor:pointer;display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.14);border-radius:14px;padding:13px 16px;font-size:19px;font-weight:700;color:var(--ink);transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--mint)}
+.opt:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.opt .k{flex:none;width:30px;height:30px;border-radius:8px;background:var(--cell);color:var(--cellink);display:grid;place-items:center;font:800 14px var(--lat)}
+.opt .t{min-width:0}
+.opt bdi,.opt .lat{font-family:var(--lat);direction:ltr;unicode-bidi:isolate}
+.opt.right{border-color:var(--line);background:rgba(33,192,99,.18)}
+.opt.wrong{border-color:var(--bad);background:rgba(248,113,113,.12)}
+.opt[disabled]{cursor:default}
+.why{margin:0;color:var(--mint);font-weight:700;font-size:17px}
+.why.badw{color:var(--warn)}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--mute);font-size:15px}
+.btn{all:unset;cursor:pointer;text-align:center;background:var(--line);color:#06121f;font-weight:900;font-size:20px;border-radius:999px;padding:14px 30px}
+.btn:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink);border:2px solid rgba(255,255,255,.25)}
+.btn[disabled]{opacity:.4;cursor:default}
+
+.level{font-size:clamp(44px,13vw,64px);font-weight:900;line-height:1.1;margin:0}
+.level small{display:block;font-size:18px;color:var(--mute);font-weight:700;margin-bottom:6px}
+.score{font:800 20px var(--lat);color:var(--mint)}
+.list{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.list a{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--ink);text-decoration:none;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 16px;font-weight:700}
+.list a:hover,.list a:focus-visible{border-color:var(--mint);outline:none}
+.list a span:last-child{color:var(--mint);font-size:15px;flex:none}
+h2{font-size:22px;margin:0;font-weight:800}
+.form{display:grid;gap:12px}
+label.f{display:grid;gap:6px;font-weight:700;font-size:16px}
+input[type=text],input[type=tel],input[type=email]{font:600 18px var(--ar);background:var(--cell);color:var(--cellink);border:2px solid var(--grid);border-radius:12px;padding:11px 14px;width:100%}
+input:focus-visible{outline:3px solid var(--mint);outline-offset:1px}
+input[type=tel],input[type=email]{direction:ltr;text-align:right;font-family:var(--lat)}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.6;color:var(--ink)}
+.consent input{width:22px;height:22px;flex:none;margin-top:3px;accent-color:var(--line)}
+.fine{color:var(--mute);font-size:13px;margin:0;line-height:1.7}
+.err{color:var(--bad);font-weight:700;font-size:15px;margin:0}
+.done{color:var(--mint);font-weight:800;margin:0}
+footer{color:var(--mute);font-size:13px;text-align:center}
+footer a{color:var(--mint)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">إبراهيم <b>تِك</b></div>
+    <span class="badge"><i><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></i>Excel إكسل</span>
+  </header>
+
+  <div class="row" id="row" aria-hidden="true"></div>
+
+  <main id="app"></main>
+
+  <footer>أسئلة من مقاطع <a href="https://www.tiktok.com/@ibrahim.tech47" target="_blank" rel="noopener">@ibrahim.tech47</a></footer>
+</div>
+
+<script>
+/* Paste the Apps Script web-app URL here after deploying it. Empty = nothing is sent. */
+const ENDPOINT = "";
+/* Ibrahim's WhatsApp number in international format without + (e.g. 9665XXXXXXXX). Used for the confirm-your-number step. */
+const WA_NUMBER = "";
+
+const Q = [
+ {lv:1,q:"كيف تبدأ أي معادلة في إكسل؟",o:["<bdi>+</bdi>","<bdi>=</bdi>","<bdi>#</bdi>","تكتبها على طول"],a:1,w:"أي معادلة تبدأ بـ = وإلا إكسل يحسبها نص."},
+ {lv:1,q:"إذا A1 فيها 5 و A2 فيها 3، وش يطلع؟",c:"=A1+A2",o:["<bdi>53</bdi>","<bdi>8</bdi>","<bdi>A1+A2</bdi>","<bdi>#VALUE!</bdi>"],a:1,w:"يجمع اللي داخل الخليتين: 5 + 3 = 8."},
+ {lv:1,q:"أسرع طريقة تجمع عمود أرقام؟",o:["<bdi>Ctrl + S</bdi>","<bdi>F4</bdi>","<bdi>Alt + =</bdi>","تكتب الأرقام في الآلة الحاسبة"],a:2,w:"Alt + = يكتب لك SUM ويحدد الأرقام لحاله."},
+ {lv:1,q:"تبي سطرين داخل نفس الخلية، وش تضغط؟",o:["<bdi>Enter</bdi>","<bdi>Alt + Enter</bdi>","<bdi>Tab</bdi>","<bdi>Ctrl + Z</bdi>"],a:1,w:"Alt + Enter ينزّلك سطر وأنت داخل نفس الخلية."},
+ {lv:2,q:"إذا B2 فيها 50، وش تكتب المعادلة؟",c:'=IF(B2>=50,"ناجح","راسب")',o:["ناجح","راسب","<bdi>FALSE</bdi>","خطأ في المعادلة"],a:0,w:"الشرط ≥ 50، و 50 تحقق الشرط فتطلع «ناجح»."},
+ {lv:2,q:"وش يسوي <bdi>Ctrl + T</bdi>؟",o:["يطبع الصفحة","يحذف المكرر","يحوّل البيانات لجدول ذكي بفلتر وألوان","يترجم النص"],a:2,w:"جدول ذكي: ألوان وفلتر وصف إجمالي، وأي صف تضيفه ينضم لحاله."},
+ {lv:2,q:"سحبت المعادلة لتحت وطلعت أصفار. وش التعديل؟",c:"=B2*F1",o:["<bdi>=B2*F2</bdi>","<bdi>=B2*$F$1</bdi>","<bdi>=$B$2*F1</bdi>","<bdi>=SUM(B2*F1)</bdi>"],a:1,w:"$F$1 يثبّت الخلية، تضغط F4 وتنحط الدولارات."},
+ {lv:3,q:"وش تقدر تسويه XLOOKUP وما تقدر عليه VLOOKUP؟",o:["تجمع الأرقام","تبحث في عمود على يسار عمود النتيجة","تلوّن الخلايا","تشتغل بدون معادلة"],a:1,w:"XLOOKUP تبحث يمين ويسار، و VLOOKUP يمين بس."},
+ {lv:3,q:"في هالمعادلة، النجمة <bdi>*</bdi> بين الشرطين معناها؟",c:'=FILTER(A2:C99,(B2:B99="الرياض")*(C2:C99>5000))',o:["أو","و (لازم الشرطين)","ضرب الأرقام بس","تنسيق"],a:1,w:"* = و، و + = أو."},
+ {lv:3,q:"عندك ١٢ ملف في فولدر، تبي تجمعها وتتحدث لحالها كل شهر؟",o:["نسخ ولصق كل شهر","<bdi>Get Data</bdi> ← من فولدر (<bdi>Power Query</bdi>)","تنسيق شرطي","ماكرو تسجله كل مرة"],a:1,w:"Power Query يسحب الفولدر كامل، وكل شهر تضغط Refresh بس."}
+];
+
+const V = id => "https://www.tiktok.com/@ibrahim.tech47/video/"+id;
+const LEVELS = {
+ 1:{name:"مبتدئ",line:"عندك الأساس، والحين وقت الاختصارات اللي توفر عليك ساعات.",vids:[["Alt + = تجمع بضغطة","7704982775102704917"],["نموذج إدخال البيانات","7705746366303161621"],["Ctrl + T الجدول الذكي","7707197775112310037"]]},
+ 2:{name:"متوسط",line:"تمشي أمورك في الدوام، والخطوة الجاية الشروط والتنسيق اللي يشتغل لحاله.",vids:[["تلوين المتأخرين تلقائي","7705377372131855636"],["IFS أكثر من شرط","7706863138259406101"],["الدولار و F4","7702832735127129364"]]},
+ 3:{name:"متقدم",line:"أنت قريب من الأتمتة. اللي بعدها سحب البيانات والماكرو.",vids:[["Get Data من كل مكان","7705993663712742676"],["الماكرو بضغطة","7706491346244078869"],["XLOOKUP كاملة","7703910343583599893"]]}
+};
+
+const app = document.getElementById("app");
+const rowEl = document.getElementById("row");
+let i = 0, picks = [], locked = false;
+const sid = Math.random().toString(36).slice(2,10);
+
+function drawRow(){
+  let h = '<div class="h"></div>' + "ABCDEFGHIJ".split("").map(c=>`<div class="h">${c}</div>`).join("") + '<div class="rn">1</div>';
+  for(let k=0;k<10;k++){
+    const cls = k<picks.length ? (picks[k]===Q[k].a ? "ok" : "no") : (k===i && picks.length<10 ? "now" : "");
+    h += `<div class="c ${cls}"></div>`;
+  }
+  rowEl.innerHTML = h;
+}
+
+function send(payload){
+  if(!ENDPOINT) return Promise.resolve(false);
+  return fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
+    .then(()=>true).catch(()=>false);
+}
+
+function intro(){
+  app.innerHTML = `<section class="wrap" style="gap:18px">
+    <h1>وش مستواك في إكسل؟</h1>
+    <p class="lead">١٠ أسئلة من الدوام، تاخذ دقيقتين. كل إجابة صح تلوّن لك خلية، وفي الآخر تعرف مستواك ووش تتعلم بعدها.</p>
+    <div class="fbar"><span class="fx">fx</span><span>=مستواك(A1:J1)</span></div>
+    <div><button class="btn" id="go">ابدأ الاختبار</button></div>
+  </section>`;
+  document.getElementById("go").onclick = ()=>{ i=0; picks=[]; question(); };
+  drawRow();
+}
+
+function question(){
+  locked = false; drawRow();
+  const x = Q[i];
+  app.innerHTML = `<section class="card" aria-live="polite">
+    <div class="nav"><span>سؤال <bdi>${i+1}</bdi> من <bdi>10</bdi></span><span>${["","أساسيات","متوسط","متقدم"][x.lv]}</span></div>
+    <p class="q">${x.q}</p>
+    ${x.c?`<code class="code">${x.c.replace(/</g,"&lt;").replace(/>/g,"&gt;")}</code>`:""}
+    <div class="opts">${x.o.map((t,k)=>`<button class="opt" data-k="${k}"><span class="k">${"أبجد"[k]}</span><span class="t">${t}</span></button>`).join("")}</div>
+    <p class="why" id="why" hidden></p>
+    <div class="nav"><span></span><button class="btn" id="next" hidden>${i<9?"السؤال الجاي":"شف نتيجتك"}</button></div>
+  </section>`;
+  app.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.k));
+  app.querySelector(".opt").focus({preventScroll:true});
+}
+
+function pick(k){
+  if(locked) return; locked = true;
+  const x = Q[i]; picks.push(k);
+  app.querySelectorAll(".opt").forEach((b,j)=>{ b.disabled=true; if(j===x.a) b.classList.add("right"); else if(j===k) b.classList.add("wrong"); });
+  const why = document.getElementById("why");
+  why.textContent = (k===x.a ? "صح ✓ " : "الصح هو المظلل بالأخضر. ") + x.w;
+  why.classList.toggle("badw", k!==x.a);
+  why.hidden = false;
+  const nx = document.getElementById("next"); nx.hidden = false; nx.focus({preventScroll:true});
+  nx.onclick = ()=>{ i++; if(i<10) question(); else result(); };
+  drawRow();
+}
+
+function levelOf(){
+  const score = picks.filter((p,k)=>p===Q[k].a).length;
+  const by = [1,2,3].map(l=>Q.map((q,k)=>q.lv===l && picks[k]===q.a).filter(Boolean).length);
+  let lv = 1;
+  if(by[0]>=3 && by[1]>=2) lv = 2;
+  if(lv===2 && by[2]>=2) lv = 3;
+  return {score, lv};
+}
+
+function result(){
+  i = 10; drawRow();
+  const {score, lv} = levelOf(); const L = LEVELS[lv];
+  send({type:"result", sid, score, level:L.name, answers:picks.join(""), ua:navigator.language||""});
+  app.innerHTML = `<section class="wrap" style="gap:20px">
+    <div class="card">
+      <p class="level"><small>مستواك</small>${L.name}</p>
+      <div class="score"><bdi>${score} / 10</bdi></div>
+      <p style="margin:0">${L.line}</p>
+    </div>
+    <h2>ابدأ بهالمقاطع</h2>
+    <ul class="list">${L.vids.map(v=>`<li><a href="${V(v[1])}" target="_blank" rel="noopener"><span>${v[0]}</span><span>شاهد</span></a></li>`).join("")}</ul>
+    <div class="card">
+      <h2>نبهني أول ما تنزل دورة مستوى «${L.name}»</h2>
+      <form class="form" id="lead" novalidate>
+        <label class="f" for="nm">اسمك<input id="nm" type="text" autocomplete="given-name" maxlength="60"></label>
+        <label class="f" for="wa">رقم الواتساب<input id="wa" type="tel" inputmode="tel" autocomplete="tel" placeholder="05xxxxxxxx" maxlength="20"></label>
+        <label class="f" for="em">الإيميل (اختياري)<input id="em" type="email" autocomplete="email" maxlength="120"></label>
+        <label class="consent" for="ok"><input id="ok" type="checkbox"><span>أوافق إن إبراهيم تِك يرسل لي على الواتساب أو الإيميل عن الدورات والعروض. أقدر ألغي متى ما بغيت برسالة «إلغاء».</span></label>
+        <p class="err" id="err" hidden></p>
+        <button class="btn" type="submit" id="sb">نبهني</button>
+        <p class="fine">نستخدم بياناتك لتنبيهك بالدورات بس، وما نعطيها لأحد. نتيجة الاختبار تنحفظ بدون اسم عشان نعرف وش المقاطع اللي تفيدكم.</p>
+      </form>
+    </div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn ghost" id="again">أعد الاختبار</button><button class="btn ghost" id="share">انسخ الرابط لزميلك</button></div>
+    <p class="done" id="copied" hidden>تم نسخ الرابط ✓</p>
+  </section>`;
+  document.getElementById("again").onclick = intro;
+  document.getElementById("share").onclick = ()=>{
+    const msg = document.getElementById("copied");
+    const url = location.href.split("#")[0];
+    (navigator.clipboard ? navigator.clipboard.writeText(url) : Promise.reject())
+      .then(()=>{msg.textContent="تم نسخ الرابط ✓";msg.hidden=false})
+      .catch(()=>{msg.textContent=url;msg.hidden=false});
+  };
+  document.getElementById("lead").onsubmit = e=>{
+    e.preventDefault();
+    const nm=document.getElementById("nm").value.trim(), wa=document.getElementById("wa").value.replace(/[^\d+]/g,""), em=document.getElementById("em").value.trim(), ok=document.getElementById("ok").checked;
+    const err=document.getElementById("err");
+    const fail=t=>{err.textContent=t;err.hidden=false};
+    if(!nm) return fail("اكتب اسمك.");
+    if(wa.length<9) return fail("اكتب رقم واتساب صحيح، مثل 05xxxxxxxx.");
+    if(em && !/^\S+@\S+\.\S+$/.test(em)) return fail("الإيميل مو صحيح، صححه أو خله فاضي.");
+    if(!ok) return fail("علّم على الموافقة عشان نقدر نرسل لك التنبيه.");
+    err.hidden=true;
+    const sb=document.getElementById("sb"); sb.disabled=true; sb.textContent="جاري الحفظ…";
+    const code = String(Math.floor(1000+Math.random()*9000));
+    send({type:"lead", sid, code, name:nm, whatsapp:wa, email:em, consent:true, level:L.name, score}).then(()=>{
+      const waText = encodeURIComponent(`أؤكد رقمي للتنبيه بدورة إكسل (${L.name}). كود التأكيد: ${code}`);
+      document.getElementById("lead").innerHTML = `
+        <p class="done">باقي خطوة وحدة: أكّد ${em?"رقمك وإيميلك":"رقمك"}</p>
+        <p style="margin:0">اضغط الزر، ويفتح لك الواتساب برسالة جاهزة فيها كود التأكيد <bdi class="score">${code}</bdi>. أرسلها بس.</p>
+        ${WA_NUMBER?`<a class="btn" href="https://wa.me/${WA_NUMBER}?text=${waText}" target="_blank" rel="noopener">أكّد رقمي بالواتساب</a>`:`<p class="fine">زر التأكيد يشتغل بعد ما نضيف رقم الواتساب.</p>`}
+        ${em?`<p class="fine">ووصلك إيميل فيه رابط تأكيد على <bdi>${em.replace(/</g,"")}</bdi>. إذا ما لقيته شف الرسائل غير المرغوب فيها (Spam).</p>`:""}
+        <p class="fine">إذا ما أكدت، ما نرسل لك شي.</p>`;
+    });
+  };
+}
+
+intro();
+</script>
+</body>
+</html>
