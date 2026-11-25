@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>إبراهيم تِك | إكسل</title>
+<meta name="description" content="حيل إكسل بلهجتنا، مقطع كل يوم. اختبر مستواك وتابعنا.">
+<meta property="og:title" content="إبراهيم تِك | إكسل">
+<meta property="og:description" content="حيل إكسل بلهجتنا، مقطع كل يوم ⚡ اختبر مستواك في إكسل">
+<meta property="og:image" content="https://aleisawi.github.io/ibrahimtech-media/logo.png">
+<link rel="icon" href="logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;700;800;900&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+/* The page is a spreadsheet: every link is a row, the row number is its address. */
+:root{
+  --bg:#0b1220; --panel:#0B1F4B; --line:#21C063; --mint:#7DFAA6;
+  --ink:#e8eefc; --mute:#9fb0d0; --cell:#ffffff; --cellink:#111827; --grid:#d1d5db; --hdr:#e5e7eb;
+  --ar:"Cairo",system-ui,sans-serif; --lat:"Montserrat","Cairo",system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{margin:0;font-family:var(--ar);font-size:18px;line-height:1.6;
+  background:radial-gradient(120% 60% at 50% 0%,#13213d 0%,var(--bg) 70%) fixed;
+  padding-block:28px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:520px;margin:0 auto;display:flex;flex-direction:column;gap:22px}
+.who{display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px}
+.who img{width:96px;height:96px;border-radius:50%;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+h1{margin:4px 0 0;font-size:32px;font-weight:900;line-height:1.2}
+h1 b{color:var(--line)}
+.lead{margin:0;color:var(--mute);font-size:17px}
+
+.fbar{display:flex;gap:12px;align-items:center;background:#f3f4f6;color:var(--cellink);border-radius:12px 12px 0 0;padding:9px 14px;font:700 15px var(--ar)}
+.fbar .nb{font:700 13px var(--lat);color:#4b5563;border-left:1px solid var(--grid);padding-left:12px;min-width:34px;text-align:center}
+.fbar .fx{color:#6b7280;font-style:italic;font-family:serif}
+
+.sheet{background:var(--cell);border-radius:0 0 14px 14px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.45)}
+.colh{display:grid;grid-template-columns:44px 1fr 92px;background:var(--hdr);color:#4b5563;font:700 12px var(--lat);text-align:center}
+.colh span{padding:3px 0;border-left:1px solid var(--grid)}
+a.row,div.row{display:grid;grid-template-columns:44px 1fr 92px;align-items:stretch;color:var(--cellink);text-decoration:none;border-top:1px solid var(--grid);min-height:72px}
+.row .rn{background:var(--hdr);color:#4b5563;font:700 13px var(--lat);display:flex;align-items:center;justify-content:center;border-left:1px solid var(--grid)}
+.row .a{display:flex;flex-direction:column;justify-content:center;padding:10px 14px;border-left:1px solid var(--grid)}
+.row .a strong{font-size:19px;font-weight:800;line-height:1.35}
+.row .a small{font:600 13px var(--lat);color:#6b7280;direction:ltr;text-align:right}
+.row .b{display:flex;align-items:center;justify-content:center;font:800 14px var(--ar)}
+.row .b span{border-radius:8px;padding:4px 10px;background:#e9f9ef;color:#15803d}
+a.row:hover .a,a.row:focus-visible .a{background:#f0fdf4}
+a.row:focus-visible{outline:3px solid var(--line);outline-offset:-3px}
+a.row.main{background:#dcfce7}
+a.row.main .a strong{color:#14532d}
+a.row.main .b span{background:var(--line);color:#0B1F4B}
+div.row.soon{color:#9ca3af}
+div.row.soon .b span{background:#f3f4f6;color:#9ca3af}
+
+.foot{text-align:center;color:var(--mute);font-size:14px;margin:0}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="who">
+    <img src="logo.png" alt="شعار إبراهيم تِك" width="96" height="96">
+    <h1>إبراهيم <b>تِك</b></h1>
+    <p class="lead">حيل إكسل بلهجتنا، مقطع جديد كل يوم الساعة ١ ⚡</p>
+  </section>
+
+  <div>
+    <div class="fbar" aria-hidden="true"><span class="nb" id="nb">A1</span><span class="fx">fx</span><span id="fx">اختبر مستواك في إكسل</span></div>
+    <div class="sheet">
+      <div class="colh" aria-hidden="true"><span></span><span>A</span><span>B</span></div>
+
+      <a class="row main" href="quiz/" data-fx="اختبر مستواك في إكسل">
+        <span class="rn">1</span>
+        <span class="a"><strong>وش مستواك في إكسل؟ 🎯</strong><small style="direction:rtl;font-family:var(--ar)">10 أسئلة، دقيقتين بس</small></span>
+        <span class="b"><span>ابدأ</span></span>
+      </a>
+      <a class="row" href="https://www.tiktok.com/@ibrahim.tech47" target="_blank" rel="noopener" data-fx="تيك توك">
+        <span class="rn">2</span>
+        <span class="a"><strong>تيك توك</strong><small>@ibrahim.tech47</small></span>
+        <span class="b"><span>تابع</span></span>
+      </a>
+      <a class="row" href="https://www.youtube.com/@ibrahimtech47" target="_blank" rel="noopener" data-fx="يوتيوب">
+        <span class="rn">3</span>
+        <span class="a"><strong>يوتيوب</strong><small>@ibrahimtech47</small></span>
+        <span class="b"><span>اشترك</span></span>
+      </a>
+      <a class="row" href="https://www.instagram.com/ibrahim.techs/" target="_blank" rel="noopener" data-fx="إنستقرام">
+        <span class="rn">4</span>
+        <span class="a"><strong>إنستقرام</strong><small>@ibrahim.techs</small></span>
+        <span class="b"><span>تابع</span></span>
+      </a>
+      <div class="row soon" data-fx="الدورة: قريباً">
+        <span class="rn">5</span>
+        <span class="a"><strong>دورة: من الصفر إلى داشبورد احترافي</strong><small style="direction:rtl;font-family:var(--ar)">بعد ما نخلّصها</small></span>
+        <span class="b"><span>قريباً</span></span>
+      </div>
+      <div class="row soon" data-fx="المتجر: قريباً">
+        <span class="rn">6</span>
+        <span class="a"><strong>المتجر: قوالب وملفات جاهزة</strong><small style="direction:rtl;font-family:var(--ar)">بعد ما نخلّصها</small></span>
+        <span class="b"><span>قريباً</span></span>
+      </div>
+    </div>
+  </div>
+
+  <p class="foot">إبراهيم تِك | إكسل</p>
+</main>
+<script>
+// The formula bar shows the row you're about to open, like selecting a cell.
+const nb=document.getElementById('nb'),fx=document.getElementById('fx');
+document.querySelectorAll('.row').forEach(r=>{
+  const show=()=>{nb.textContent='A'+r.querySelector('.rn').textContent;fx.textContent=r.dataset.fx;};
+  r.addEventListener('mouseenter',show);r.addEventListener('focus',show);r.addEventListener('touchstart',show,{passive:true});
+});
+</script>
+</body>
+</html>
