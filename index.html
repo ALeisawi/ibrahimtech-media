@@ -35,6 +35,11 @@ h1 b{color:var(--line)}
 .fbar{display:flex;gap:12px;align-items:center;background:#f3f4f6;color:var(--cellink);border-radius:12px 12px 0 0;padding:9px 14px;font:700 15px var(--ar)}
 .fbar .nb{font:700 13px var(--lat);color:#4b5563;border-left:1px solid var(--grid);padding-left:12px;min-width:34px;text-align:center}
 .fbar .fx{color:#6b7280;font-style:italic;font-family:serif}
+.fbar input{color-scheme:light;flex:1;min-width:0;border:0;background:transparent;font:700 17px var(--ar);color:var(--cellink);outline:none;padding:4px 0}
+.fbar input::placeholder{color:#9ca3af;font-weight:600}
+.fbar:focus-within{box-shadow:inset 0 0 0 3px var(--line)}
+.empty{display:none;padding:18px 14px;color:#6b7280;text-align:center;border-top:1px solid var(--grid);font-weight:700}
+.empty.on{display:block}
 
 .sheet{background:var(--cell);border-radius:0 0 14px 14px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.45)}
 .colh{display:grid;grid-template-columns:44px 1fr 92px;background:var(--hdr);color:#4b5563;font:700 12px var(--lat);text-align:center}
@@ -66,51 +71,55 @@ div.row.soon .b span{background:#f3f4f6;color:#9ca3af}
   </section>
 
   <div>
-    <div class="fbar" aria-hidden="true"><span class="nb" id="nb">A1</span><span class="fx">fx</span><span id="fx">اختبر مستواك في إكسل</span></div>
+    <label class="fbar" for="q"><span class="nb" id="nb">6</span><span class="fx" aria-hidden="true">fx</span><input id="q" type="search" placeholder="دوّر على منتج أو درس… مثل: داشبورد" autocomplete="off" enterkeyhint="search" aria-label="ابحث في الروابط والمنتجات"></label>
     <div class="sheet">
       <div class="colh" aria-hidden="true"><span></span><span>A</span><span>B</span></div>
 
-      <a class="row main" href="quiz/" data-fx="اختبر مستواك في إكسل">
+      <a class="row main" href="quiz/" data-fx="اختبر مستواك في إكسل" data-k="اختبار مستوى quiz test">
         <span class="rn">1</span>
         <span class="a"><strong>وش مستواك في إكسل؟ 🎯</strong><small style="direction:rtl;font-family:var(--ar)">10 أسئلة، دقيقتين بس</small></span>
         <span class="b"><span>ابدأ</span></span>
       </a>
-      <a class="row" href="https://www.tiktok.com/@ibrahim.tech47" target="_blank" rel="noopener" data-fx="تيك توك">
+      <a class="row" href="https://www.tiktok.com/@ibrahim.tech47" target="_blank" rel="noopener" data-fx="تيك توك" data-k="tiktok تيكتوك مقاطع">
         <span class="rn">2</span>
         <span class="a"><strong>تيك توك</strong><small>@ibrahim.tech47</small></span>
         <span class="b"><span>تابع</span></span>
       </a>
-      <a class="row" href="https://www.youtube.com/@ibrahimtech47" target="_blank" rel="noopener" data-fx="يوتيوب">
+      <a class="row" href="https://www.youtube.com/@ibrahimtech47" target="_blank" rel="noopener" data-fx="يوتيوب" data-k="youtube شورتس قناة">
         <span class="rn">3</span>
         <span class="a"><strong>يوتيوب</strong><small>@ibrahimtech47</small></span>
         <span class="b"><span>اشترك</span></span>
       </a>
-      <a class="row" href="https://www.instagram.com/ibrahim.techs/" target="_blank" rel="noopener" data-fx="إنستقرام">
+      <a class="row" href="https://www.instagram.com/ibrahim.techs/" target="_blank" rel="noopener" data-fx="إنستقرام" data-k="instagram انستا ريلز">
         <span class="rn">4</span>
         <span class="a"><strong>إنستقرام</strong><small>@ibrahim.techs</small></span>
         <span class="b"><span>تابع</span></span>
       </a>
-      <div class="row soon" data-fx="الدورة: قريباً">
+      <div class="row soon" data-fx="الدورة: قريباً" data-k="دورة كورس داشبورد تعلم من الصفر">
         <span class="rn">5</span>
         <span class="a"><strong>دورة: من الصفر إلى داشبورد احترافي</strong><small style="direction:rtl;font-family:var(--ar)">بعد ما نخلّصها</small></span>
         <span class="b"><span>قريباً</span></span>
       </div>
-      <div class="row soon" data-fx="المتجر: قريباً">
+      <div class="row soon" data-fx="المتجر: قريباً" data-k="متجر قوالب ملفات جاهزة شراء">
         <span class="rn">6</span>
         <span class="a"><strong>المتجر: قوالب وملفات جاهزة</strong><small style="direction:rtl;font-family:var(--ar)">بعد ما نخلّصها</small></span>
         <span class="b"><span>قريباً</span></span>
       </div>
+      <div class="empty" id="empty">ما لقينا شي… جرّب كلمة ثانية</div>
     </div>
   </div>
 
   <p class="foot">إبراهيم تِك | إكسل</p>
 </main>
 <script>
-// The formula bar shows the row you're about to open, like selecting a cell.
-const nb=document.getElementById('nb'),fx=document.getElementById('fx');
-document.querySelectorAll('.row').forEach(r=>{
-  const show=()=>{nb.textContent='A'+r.querySelector('.rn').textContent;fx.textContent=r.dataset.fx;};
-  r.addEventListener('mouseenter',show);r.addEventListener('focus',show);r.addEventListener('touchstart',show,{passive:true});
+// Search works like Excel's filter: rows that don't match hide, the name box shows how many are left.
+const norm=t=>(t||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/[\u064B-\u0652\u0640]/g,'');
+const rows=[...document.querySelectorAll('.sheet .row')],q=document.getElementById('q'),nb=document.getElementById('nb'),empty=document.getElementById('empty');
+rows.forEach(r=>r._t=norm(r.textContent+' '+(r.dataset.k||'')));
+q.addEventListener('input',()=>{
+  const words=norm(q.value).split(/\s+/).filter(Boolean);let n=0;
+  rows.forEach(r=>{const ok=words.every(w=>r._t.includes(w));r.style.display=ok?'':'none';if(ok)n++;});
+  nb.textContent=n;empty.classList.toggle('on',n===0);
 });
 </script>
 </body>
