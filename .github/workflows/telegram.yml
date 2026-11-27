@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 tg/post.py 2> tg/last_error.txt || true
+      - run: python3 tg/post.py 2>&1 | sed "s|$TELEGRAM_BOT_TOKEN|***|g" > tg/last_error.txt || true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       - run: |
