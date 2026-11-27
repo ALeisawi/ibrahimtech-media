@@ -11,12 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 tg/post.py
+      - run: python3 tg/post.py 2> tg/last_error.txt || true
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       - run: |
           git config user.name "ibrahimtech-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add tg/state.json tg/thumbs || true
+          git add tg/state.json tg/last_error.txt; git add tg/thumbs 2>/dev/null || true
           git commit -m "tg state [skip ci]" || exit 0
           git pull --rebase && git push
