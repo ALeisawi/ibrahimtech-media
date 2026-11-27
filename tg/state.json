@@ -28,10 +28,180 @@
  ],
  "errors": [],
  "bot_ok": true,
- "last_run": "2026-11-27 15:33:33",
+ "last_run": "2026-11-27 15:33:57",
  "updates_seen": 23,
  "deleted": {
   "10": true
  },
- "inbox": {}
+ "inbox": {},
+ "dm_seen": [
+  {
+   "id": 17,
+   "kinds": [
+    "text"
+   ],
+   "caption": "/start",
+   "group": null
+  },
+  {
+   "id": 18,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 19,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 20,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 21,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 22,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 23,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 24,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 25,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 26,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 27,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334201179708"
+  },
+  {
+   "id": 28,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 29,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 30,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 31,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 32,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 33,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 34,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 35,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 36,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  },
+  {
+   "id": 37,
+   "kinds": [
+    "video"
+   ],
+   "caption": "",
+   "group": "14366334729616580"
+  }
+ ]
 }
