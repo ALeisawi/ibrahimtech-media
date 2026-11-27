@@ -1,7 +1,12 @@
 {
  "done": {
   "welcome": 2,
-  "names-f3": 10
+  "names-f3": 4,
+  "flash-fill": 5,
+  "qa1-databars": 6,
+  "qa2-sparklines": 7,
+  "qa3-top10": 8,
+  "freeze-panes": 9
  },
  "chats": [
   {

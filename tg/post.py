@@ -46,6 +46,10 @@ S["chats"] = list(chats.values())
 S["bot_ok"] = call("getMe").get("ok", False)
 
 chat = Q.get("chat_id")
+for mid in Q.get("delete", []):
+    if str(mid) in S.setdefault("deleted", {}):
+        continue
+    S["deleted"][str(mid)] = call("deleteMessage", {"chat_id": chat, "message_id": mid}).get("ok")
 if chat:
     limit = Q.get("limit") or 999
     sent = 0
