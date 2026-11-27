@@ -1,0 +1,84 @@
+{
+ "chat_id": null,
+ "limit": 0,
+ "items": [
+  {
+   "key": "welcome",
+   "title": "رسالة مثبتة: روابط الحساب",
+   "video": null,
+   "text": "👋 هلا فيكم في قروب إبراهيم تِك | إكسل\nهنا كل مقاطعنا مع الشرح مكتوب، وتقدر تدوّر على أي حيلة من البحث 🔎 (مثل: طباعة، تكرار، تاريخ، Ctrl).\n\n🎯 اختبر مستواك في إكسل + كل حساباتنا:\naleisawi.github.io/ibrahimtech-media\n\n📱 تيك توك: @ibrahim.tech47\n▶️ يوتيوب: @ibrahimtech47\n📸 إنستقرام: @ibrahim.techs"
+  },
+  {
+   "key": "names-f3",
+   "title": "معادلات إكسل تنقرا عربي (Ctrl+Shift+F3)",
+   "video": "tg/names-f3.mp4",
+   "text": "😎 كيف تخلي معادلات إكسل تنقرا عربي؟ (تسمية الأعمدة)\n1) حدد الجدول مع العناوين\n2) اضغط Ctrl + Shift + F3 (إنشاء من التحديد)\n3) خل «الصف العلوي» بس، واضغط OK\n4) اكتب المعادلة بأسماء الأعمدة:\n=(سعر_البيع-التكلفة)*الكمية بدل =(B2-C2)*D2\n💡 العنوان اللي فيه مسافة يصير بينه شرطة سفلية _\n🍎 على الماك: الصيغ ← إنشاء من التحديد\n🔎 تسمية النطاقات، Create from Selection، Named Ranges، Define Name\n#تكشخ_عليهم #معادلات\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "flash-fill",
+   "title": "فصل الاسم الأول بـ Ctrl+E",
+   "video": "tg/flash-fill.mp4",
+   "text": "😎 كيف تفصل الاسم الأول عن الاسم الكامل في إكسل؟\nاكتب أول اسم بيدك في الخلية اللي جنبه، وبعدها اضغط Ctrl + E… إكسل فاهم النمط ويكمّل الباقي لحاله ⚡\nينفع بعد للإيميلات والجوالات ودمج الأسماء.\n🔎 التعبئة السريعة، Flash Fill، فصل النص، تقسيم الاسم\n#تكشخ_عليهم #اختصارات\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "qa1-databars",
+   "title": "أشرطة البيانات بـ Ctrl+Q",
+   "video": "tg/qa1-databars.mp4",
+   "text": "📊 كيف تعرف الأعلى بنظرة وحدة في إكسل؟\nحدد الأرقام ← Ctrl + Q ← التنسيق ← أشرطة البيانات\nكل رقم يصير له شريط على قد حجمه ✅\n🔎 التحليل السريع، Quick Analysis، Data Bars، تنسيق شرطي\n#التحليل_السريع\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "qa2-sparklines",
+   "title": "خطوط المؤشر بـ Ctrl+Q",
+   "video": "tg/qa2-sparklines.mp4",
+   "text": "📈 كيف تسوي رسم بياني صغير لكل صف في إكسل؟\nحدد أرقام الشهور ← Ctrl + Q ← خطوط المؤشر ← خط\nوتشوف مين طالع ومين نازل جنب كل موظف ✅\n🔎 Sparklines، التحليل السريع، Quick Analysis، رسم بياني مصغر\n#التحليل_السريع\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "qa3-top10",
+   "title": "أعلى 10٪ بـ Ctrl+Q",
+   "video": "tg/qa3-top10.mp4",
+   "text": "🏆 كيف تعرف أفضل 10٪ من موظفينك في إكسل؟\nحدد الأرقام ← Ctrl + Q ← التنسيق ← أعلى 10٪\nوالتلوين يتحدّث لحاله لو تغيّر أي رقم ✅\n🔎 Top 10%، التحليل السريع، Quick Analysis، تنسيق شرطي\n#التحليل_السريع\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "freeze-panes",
+   "title": "تجميد الصف العلوي",
+   "video": "tg/freeze-panes.mp4",
+   "text": "😩 تنزل بالجدول ويختفي العنوان؟ (تجميد الأجزاء)\nعرض ← تجميد الأجزاء ← تجميد الصف العلوي\nأو بالاختصار: Alt ثم W ثم F ثم R ✅\n🔎 Freeze Panes، تثبيت الصف، تثبيت العنوان\n#اختصارات\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "transpose",
+   "title": "تبديل الصفوف والأعمدة",
+   "video": "tg/transpose.mp4",
+   "text": "🔄 جدولك بالطول وتبيه بالعرض؟\nانسخ الجدول ← كليك يمين ← لصق خاص ← تبديل الصفوف والأعمدة\nأو: Ctrl + Alt + V ثم E ثم Enter ✅\n🔎 Transpose، لصق خاص، Paste Special، قلب الجدول\n#اختصارات\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "remove-dup",
+   "title": "حذف المكرر بضغطة",
+   "video": "tg/remove-dup.mp4",
+   "text": "🧹 كيف تحذف التكرار في إكسل بضغطة؟\nحدد العمود ← بيانات ← إزالة التكرارات ← موافق\nوكل اسم يبقى مرة وحدة ✅\n💡 انسخ البيانات قبل، لأن الحذف نهائي\n🔎 Remove Duplicates، المكرر، تكرار الأسماء\n#أساسيات\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "equals",
+   "title": "المعادلة تبدأ بـ =",
+   "video": "tg/equals.mp4",
+   "text": "🧮 كيف تكتب معادلة في إكسل؟\nأي معادلة لازم تبدأ بعلامة =\nاكتب = واضغط على الخلايا (مثل =A2*B2) وبعدها Enter ✅\n🔎 معادلات إكسل، Formula، الصيغ، الضرب، الجمع\n#أساسيات\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "form-autoopen",
+   "title": "النموذج يفتح لحاله مع الملف",
+   "video": "tg/form-autoopen.mp4",
+   "text": "🤯 كيف تخلي النموذج يفتح أول ما تفتح ملف إكسل؟\nAlt + F11 ← ThisWorkbook ← الصق كود Workbook_Open\nواحفظ الملف بصيغة xlsm ✅\n🔎 Workbook_Open، VBA، UserForm، فتح تلقائي\n#ماكرو\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "split-horizontal",
+   "title": "خط أفقي داخل الخلية",
+   "video": "tg/split-horizontal.mp4",
+   "text": "➖ كيف أسوي خط أفقي داخل الخلية؟\nإكسل يقسم الخلية بالمايل بس. الحل: اكتب في خليتين فوق بعض، وادمج الخلايا اللي جنبهم (دمج وتوسيط)، وتبان كأنها خلية وحدة ✅\nوللرأسي: نفس الفكرة، بس الخليتين جنب بعض 👌\n🔎 تقسيم الخلية، دمج الخلايا، Merge، Split Cell\n#تنسيق\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  },
+  {
+   "key": "print-5tips",
+   "title": "5 حيل للطباعة + توقيعات اللجنة",
+   "video": "tg/print-5tips.mp4",
+   "text": "🖨️ تطبع ملف إكسل ويطلع مقطّع؟ 5 حيل:\n1) احتواء كل الأعمدة في صفحة وحدة (ملف ← طباعة)\n2) العناوين تتكرر بكل صفحة: تخطيط الصفحة ← طباعة العناوين ← صف العناوين\n3) الجدول عريض: تخطيط الصفحة ← الاتجاه ← أفقي\n4) ترقيم الصفحات: إعداد الصفحة ← الرأس والتذييل ← صفحة 1 من ؟\n5) توقيعات اللجنة تحت كل صفحة: تذييل مخصص ← في كل خانة خط التوقيع وتحته الاسم\n⭐ بونص: Ctrl + F2 للمعاينة قبل الطباعة\n🔎 Print Titles، Header Footer، تذييل، توقيع، ترقيم الصفحات، Landscape\n#طباعة\n\n📊 اعرف مستواك في إكسل: aleisawi.github.io/ibrahimtech-media/quiz/\n"
+  }
+ ]
+}
