@@ -27,7 +27,11 @@ def call(method, fields=None, files=None):
         with urllib.request.urlopen(req, timeout=300) as r:
             return json.load(r)
     except urllib.error.HTTPError as e:
-        return json.load(e)
+        raw = e.read().decode("utf-8", "replace")
+        try:
+            return json.loads(raw)
+        except Exception:
+            return {"ok": False, "description": f"HTTP {e.code}: {raw[:300]}"}
 
 # Always refresh the list of chats the bot can see (for finding the group id)
 up = call("getUpdates", {"allowed_updates": ["message","channel_post","my_chat_member","chat_member","edited_message"]})
@@ -48,16 +52,21 @@ if chat:
     for it in Q["items"]:
         if it["key"] in S["done"] or sent >= limit:
             continue
-        if it.get("video"):
+        try:
+          if it.get("video"):
             r = call("sendVideo", {"chat_id": chat, "caption": it["text"], "width": 1080, "height": 1920, "supports_streaming": "true"}, {"video": it["video"]})
-        else:
+          else:
             r = call("sendMessage", {"chat_id": chat, "text": it["text"], "disable_web_page_preview": True})
+        except Exception as ex:
+            import traceback
+            r = {"ok": False, "description": "EXC " + traceback.format_exc()[-600:]}
         if r.get("ok"):
             S["done"][it["key"]] = r["result"]["message_id"]
             sent += 1
         else:
             S["errors"].append({"key": it["key"], "error": r.get("description")})
             break
+        json.dump(S, open("tg/state.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         time.sleep(4)
 S["last_run"] = time.strftime("%Y-%m-%d %H:%M:%S")
 json.dump(S, open("tg/state.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
