@@ -80,6 +80,14 @@ if chat:
         m = u.get("message") or {}
         if (m.get("chat") or {}).get("type") != "private":
             continue
+        vv = m.get("video") or {}
+        th = (vv.get("thumbnail") or vv.get("thumb") or {}).get("file_id")
+        if th and not os.path.exists(f"tg/thumbs/{m['message_id']}.jpg"):
+            fp = call("getFile", {"file_id": th}).get("result", {}).get("file_path")
+            if fp:
+                os.makedirs("tg/thumbs", exist_ok=True)
+                urllib.request.urlretrieve(f"https://api.telegram.org/file/bot{TOKEN}/{fp}", f"tg/thumbs/{m['message_id']}.jpg")
+        S.setdefault("dm_files", {})[str(m["message_id"])] = {"file_id": vv.get("file_id"), "dur": vv.get("duration"), "size": vv.get("file_size")}
         S["dm_seen"].append({"id": m.get("message_id"), "kinds": [k for k in ("video","document","animation","video_note","text","photo") if k in m], "caption": (m.get("caption") or m.get("text") or "")[:40], "group": m.get("media_group_id")})
         v = m.get("video") or m.get("document")
         num = (m.get("caption") or "").strip().translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))

@@ -17,6 +17,6 @@ jobs:
       - run: |
           git config user.name "ibrahimtech-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add tg/state.json
+          git add tg/state.json tg/thumbs || true
           git commit -m "tg state [skip ci]" || exit 0
           git pull --rebase && git push
