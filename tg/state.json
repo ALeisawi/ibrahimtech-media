@@ -1,7 +1,14 @@
 {
  "done": {},
- "chats": [],
+ "chats": [
+  {
+   "id": -5363064519,
+   "title": "إبراهيم تِك | إكسل",
+   "type": "group"
+  }
+ ],
  "errors": [],
  "bot_ok": true,
- "last_run": "2026-11-27 14:21:37"
+ "last_run": "2026-11-27 14:22:09",
+ "updates_seen": 1
 }
