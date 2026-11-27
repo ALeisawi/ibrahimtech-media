@@ -30,10 +30,11 @@ def call(method, fields=None, files=None):
         return json.load(e)
 
 # Always refresh the list of chats the bot can see (for finding the group id)
-up = call("getUpdates", {"allowed_updates": ["message", "my_chat_member"]})
+up = call("getUpdates", {"allowed_updates": ["message","channel_post","my_chat_member","chat_member","edited_message"]})
+S["updates_seen"] = len(up.get("result", []))
 chats = {c["id"]: c for c in S.get("chats", [])}
 for u in up.get("result", []):
-    for k in ("message", "my_chat_member"):
+    for k in ("message", "channel_post", "my_chat_member", "chat_member", "edited_message"):
         c = (u.get(k) or {}).get("chat")
         if c:
             chats[c["id"]] = {"id": c["id"], "title": c.get("title") or c.get("first_name"), "type": c["type"]}
