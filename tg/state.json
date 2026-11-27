@@ -12,7 +12,23 @@
   "equals": 13,
   "form-autoopen": 14,
   "split-horizontal": 15,
-  "print-5tips": 16
+  "print-5tips": 16,
+  "p11": 38,
+  "p12": 39,
+  "p3": 40,
+  "p17": 41,
+  "p16": 42,
+  "p14": 43,
+  "p19": 44,
+  "p20": 45,
+  "p21": 46,
+  "p22": 47,
+  "p23": 48,
+  "xlookup": 49,
+  "index-match": 50,
+  "late-cf": 51,
+  "get-data": 52,
+  "print-area": 53
  },
  "chats": [
   {
@@ -28,7 +44,7 @@
  ],
  "errors": [],
  "bot_ok": true,
- "last_run": "2026-11-27 15:50:35",
+ "last_run": "2026-11-27 15:52:37",
  "updates_seen": 23,
  "deleted": {
   "10": true
