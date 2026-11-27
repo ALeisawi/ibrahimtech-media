@@ -28,7 +28,7 @@
  ],
  "errors": [],
  "bot_ok": true,
- "last_run": "2026-11-27 15:33:57",
+ "last_run": "2026-11-27 15:44:55",
  "updates_seen": 23,
  "deleted": {
   "10": true
@@ -203,5 +203,112 @@
    "caption": "",
    "group": "14366334729616580"
   }
- ]
+ ],
+ "dm_files": {
+  "17": {
+   "file_id": null,
+   "dur": null,
+   "size": null
+  },
+  "18": {
+   "file_id": "BAACAgQAAxkBAAMSawmbn5CaUZI5k1xnrGXcC9FiCT4AAngoAAKs01FQUrtziskC2TE9BA",
+   "dur": 46,
+   "size": 3861838
+  },
+  "19": {
+   "file_id": "BAACAgQAAxkBAAMTawmbnxB6n4q4-DhCBfHVampqIpAAAnkoAAKs01FQnVkVgKIx4QABPQQ",
+   "dur": 57,
+   "size": 6015021
+  },
+  "20": {
+   "file_id": "BAACAgQAAxkBAAMUawmbn2KLMKyxt5GYYf4tyDDuBz0AAnooAAKs01FQ3F-VtytFGmY9BA",
+   "dur": 30,
+   "size": 2807405
+  },
+  "21": {
+   "file_id": "BAACAgQAAxkBAAMVawmbn9IOAhlXG6dUg1e-2nNxBe0AAnsoAAKs01FQRyelWerwf6Y9BA",
+   "dur": 37,
+   "size": 2084000
+  },
+  "22": {
+   "file_id": "BAACAgQAAxkBAAMWawmbn7dqcLi0Vp4cvuylmJ0HkbkAAnwoAAKs01FQ31iR8Oda8gU9BA",
+   "dur": 60,
+   "size": 5978749
+  },
+  "23": {
+   "file_id": "BAACAgQAAxkBAAMXawmbn7XRlRNxckROEtEh_07E-H4AAn0oAAKs01FQ93L-ftP8fXs9BA",
+   "dur": 24,
+   "size": 2857144
+  },
+  "24": {
+   "file_id": "BAACAgQAAxkBAAMYawmbn_oLdO1PMjC0YlUGtulKAawAAn4oAAKs01FQKZDaWzL-Rx89BA",
+   "dur": 23,
+   "size": 2011509
+  },
+  "25": {
+   "file_id": "BAACAgQAAxkBAAMZawmbn6PIN7oX7S3VnbV1qrOim2cAAn8oAAKs01FQkAiRoxTc_5w9BA",
+   "dur": 26,
+   "size": 2271665
+  },
+  "26": {
+   "file_id": "BAACAgQAAxkBAAMaawmbn9Imaiu37f3mbY6vHiQuuRwAAoAoAAKs01FQG4Qw815yUQ09BA",
+   "dur": 23,
+   "size": 2132581
+  },
+  "27": {
+   "file_id": "BAACAgQAAxkBAAMbawmbnwHP0TfIK7PWetMiFdW3KukAAoEoAAKs01FQrIJDkNN2dks9BA",
+   "dur": 23,
+   "size": 2113240
+  },
+  "28": {
+   "file_id": "BAACAgQAAxkBAAMcawmb4T819CXdI6v1YfCys5_EYigAAoIoAAKs01FQfaVabuBFxWw9BA",
+   "dur": 25,
+   "size": 2171754
+  },
+  "29": {
+   "file_id": "BAACAgQAAxkBAAMdawmb4UlIFb5wIH55HOnuYq16ajAAAoMoAAKs01FQej93i7A9RpM9BA",
+   "dur": 23,
+   "size": 2289590
+  },
+  "30": {
+   "file_id": "BAACAgQAAxkBAAMeawmb4Wfn8JwbNyuEhzLkuIT8EwoAAoQoAAKs01FQBBvUJglDAAFwPQQ",
+   "dur": 27,
+   "size": 2405894
+  },
+  "31": {
+   "file_id": "BAACAgQAAxkBAAMfawmb4ZCrKNal4bX-uXDrI3WzMCcAAoUoAAKs01FQt74ueHUP7g89BA",
+   "dur": 27,
+   "size": 1481358
+  },
+  "32": {
+   "file_id": "BAACAgQAAxkBAAMgawmb4Y4DH6toOLSY0HEY2AFSP9gAAoYoAAKs01FQKUOIxnGXWPU9BA",
+   "dur": 25,
+   "size": 1101925
+  },
+  "33": {
+   "file_id": "BAACAgQAAxkBAAMhawmb4QNqwLItT2v8lSyjwarIqwYAAocoAAKs01FQPu4-oFtmjsg9BA",
+   "dur": 25,
+   "size": 2562057
+  },
+  "34": {
+   "file_id": "BAACAgQAAxkBAAMiawmb4XpfdNMnU1_eVezSsG8wx2kAAogoAAKs01FQs_Y5mkHF0qE9BA",
+   "dur": 20,
+   "size": 2214965
+  },
+  "35": {
+   "file_id": "BAACAgQAAxkBAAMjawmb4UQ02cvb-oCYPArZztIDyvEAAokoAAKs01FQgJg8HHqKENc9BA",
+   "dur": 21,
+   "size": 1814781
+  },
+  "36": {
+   "file_id": "BAACAgQAAxkBAAMiawmb4XpfdNMnU1_eVezSsG8wx2kAAogoAAKs01FQs_Y5mkHF0qE9BA",
+   "dur": 20,
+   "size": 2214965
+  },
+  "37": {
+   "file_id": "BAACAgQAAxkBAAMlawmb4aNxfuloSo_4b-WmxpT2CssAAoooAAKs01FQU4n7fgnkJIA9BA",
+   "dur": 26,
+   "size": 2117379
+  }
+ }
 }
