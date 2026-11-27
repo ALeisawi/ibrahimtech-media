@@ -107,6 +107,16 @@ if chat:
         else:
             S["errors"].append({"key": it["key"], "error": r.get("description")})
         time.sleep(4)
+for mid in Q.get("fetch", []):
+    f = S.get("dm_files", {}).get(str(mid), {})
+    if f.get("file_id") and not os.path.exists(f"tg/inbox/{mid}.mp4"):
+        try:
+            fp = call("getFile", {"file_id": f["file_id"]}).get("result", {}).get("file_path")
+            os.makedirs("tg/inbox", exist_ok=True)
+            with urllib.request.urlopen(f"https://api.telegram.org/file/bot{TOKEN}/{fp}", timeout=120) as rr:
+                open(f"tg/inbox/{mid}.mp4", "wb").write(rr.read())
+        except Exception as ex:
+            S.setdefault("fetch_err", []).append(str(ex)[:200])
 S["last_run"] = time.strftime("%Y-%m-%d %H:%M:%S")
 json.dump(S, open("tg/state.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("chats:", len(S["chats"]), "done:", len(S["done"]), "errors:", S["errors"][-1:] )
