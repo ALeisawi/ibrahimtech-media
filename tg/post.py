@@ -117,6 +117,20 @@ for mid in Q.get("fetch", []):
                 open(f"tg/inbox/{mid}.mp4", "wb").write(rr.read())
         except Exception as ex:
             S.setdefault("fetch_err", []).append(str(ex)[:200])
+if chat:
+    for it in Q.get("map", []):
+        if it["key"] in S["done"]:
+            continue
+        f = S.get("dm_files", {}).get(str(it["mid"]), {})
+        if not f.get("file_id"):
+            S["errors"].append({"key": it["key"], "error": "no file"}); continue
+        r = call("sendVideo", {"chat_id": chat, "video": f["file_id"], "caption": it["text"], "supports_streaming": True})
+        if r.get("ok"):
+            S["done"][it["key"]] = r["result"]["message_id"]
+        else:
+            S["errors"].append({"key": it["key"], "error": r.get("description")}); break
+        json.dump(S, open("tg/state.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+        time.sleep(4)
 S["last_run"] = time.strftime("%Y-%m-%d %H:%M:%S")
 json.dump(S, open("tg/state.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("chats:", len(S["chats"]), "done:", len(S["done"]), "errors:", S["errors"][-1:] )
