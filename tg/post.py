@@ -75,10 +75,12 @@ if chat:
 # Videos Ibrahim sends to the bot in private, captioned with a number from the list
 if chat:
     S.setdefault("inbox", {})
+    S["dm_seen"] = []
     for u in up.get("result", []):
         m = u.get("message") or {}
         if (m.get("chat") or {}).get("type") != "private":
             continue
+        S["dm_seen"].append({"id": m.get("message_id"), "kinds": [k for k in ("video","document","animation","video_note","text","photo") if k in m], "caption": (m.get("caption") or m.get("text") or "")[:40], "group": m.get("media_group_id")})
         v = m.get("video") or m.get("document")
         num = (m.get("caption") or "").strip().translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
         if v and num in Q.get("dm", {}):
