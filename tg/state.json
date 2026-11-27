@@ -19,12 +19,17 @@
    "id": -5363064519,
    "title": "إبراهيم تِك | إكسل",
    "type": "group"
+  },
+  {
+   "id": 5108722195,
+   "title": "Ibrahim",
+   "type": "private"
   }
  ],
  "errors": [],
  "bot_ok": true,
- "last_run": "2026-11-27 14:48:12",
- "updates_seen": 2,
+ "last_run": "2026-11-27 15:33:33",
+ "updates_seen": 23,
  "deleted": {
   "10": true
  },
