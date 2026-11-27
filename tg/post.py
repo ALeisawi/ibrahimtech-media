@@ -72,6 +72,27 @@ if chat:
             break
         json.dump(S, open("tg/state.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
         time.sleep(4)
+# Videos Ibrahim sends to the bot in private, captioned with a number from the list
+if chat:
+    S.setdefault("inbox", {})
+    for u in up.get("result", []):
+        m = u.get("message") or {}
+        if (m.get("chat") or {}).get("type") != "private":
+            continue
+        v = m.get("video") or m.get("document")
+        num = (m.get("caption") or "").strip().translate(str.maketrans("٠١٢٣٤٥٦٧٨٩", "0123456789"))
+        if v and num in Q.get("dm", {}):
+            S["inbox"][num] = v["file_id"]
+    for num, fid in sorted(S["inbox"].items(), key=lambda kv: int(kv[0])):
+        it = Q["dm"][num]
+        if it["key"] in S["done"]:
+            continue
+        r = call("sendVideo", {"chat_id": chat, "video": fid, "caption": it["text"], "supports_streaming": True})
+        if r.get("ok"):
+            S["done"][it["key"]] = r["result"]["message_id"]
+        else:
+            S["errors"].append({"key": it["key"], "error": r.get("description")})
+        time.sleep(4)
 S["last_run"] = time.strftime("%Y-%m-%d %H:%M:%S")
 json.dump(S, open("tg/state.json", "w", encoding="utf-8"), ensure_ascii=False, indent=1)
 print("chats:", len(S["chats"]), "done:", len(S["done"]), "errors:", S["errors"][-1:] )
