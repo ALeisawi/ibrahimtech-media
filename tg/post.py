@@ -46,6 +46,9 @@ S["chats"] = list(chats.values())
 S["bot_ok"] = call("getMe").get("ok", False)
 
 chat = Q.get("chat_id")
+_gc = call("getChat", {"chat_id": chat})
+S["chat_check"] = {"ok": _gc.get("ok"), "id": (_gc.get("result") or {}).get("id"), "type": (_gc.get("result") or {}).get("type"), "username": (_gc.get("result") or {}).get("username"), "err": _gc.get("description")}
+print("chat_check", S["chat_check"])
 for mid in Q.get("delete", []):
     if str(mid) in S.setdefault("deleted", {}):
         continue
