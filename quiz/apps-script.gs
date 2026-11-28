@@ -131,3 +131,75 @@ function setup() {
   leads_();
   MailApp.getRemainingDailyQuota();
 }
+
+// ==================== دعوة قروب التيليجرام (للي أكدوا إيميلاتهم) ====================
+// 1) شغّل testTelegramInvite: يرسل نسخة تجريبية لإيميلك أنت بس.
+// 2) إذا عجبتك، شغّل sendTelegramInvite: يرسل لكل إيميل مؤكد ما وصلته الدعوة قبل، ويكتب وقت الإرسال بعمود «دعوة التيليجرام».
+//    تقدر تشغّلها مرة ثانية بأمان: ما ترسل لأحد مرتين.
+const TG_URL = 'https://t.me/Ibrahimexcel';
+
+function inviteHtml_(name, level) {
+  const hi = name ? 'هلا ' + name + ' 👋' : 'هلا 👋';
+  const lv = level ? '<div style="display:inline-block;background:#ffffff;color:#0B1F4B;border-radius:10px;padding:6px 16px;font-size:14px;font-weight:bold;margin-bottom:18px">مستواك في الاختبار: <span style="color:#15803d">' + level + '</span></div>' : '';
+  return '<!doctype html><html dir="rtl" lang="ar"><body style="margin:0;padding:0;background:#0b1220">' +
+  '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0b1220;padding:28px 12px"><tr><td align="center">' +
+  '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;font-family:Tahoma,Arial,sans-serif;color:#e8eefc;direction:rtl">' +
+    '<tr><td style="padding:0 6px 16px;font-size:18px;font-weight:bold">إبراهيم <span style="color:#21C063">تِك</span>' +
+      '<span style="float:left;font-size:12px;border:2px solid #21C063;border-radius:8px;padding:2px 8px;color:#e8eefc">Excel إكسل</span></td></tr>' +
+    '<tr><td style="background:#0B1F4B;border:3px solid #21C063;border-radius:22px;padding:30px 24px;text-align:center">' +
+      '<div style="font-size:15px;color:#9fb0d0;margin-bottom:6px">' + hi + '</div>' +
+      '<div style="font-size:26px;font-weight:bold;line-height:1.4;margin-bottom:12px">دورتنا المجانية قرّبت 🎓</div>' +
+      lv +
+      '<div style="font-size:16px;line-height:1.9;color:#e8eefc;margin-bottom:20px">«<b style="color:#7DFAA6">من الصفر إلى داشبورد احترافي</b>»<br>' +
+      'نبني فيها مع بعض داشبورد مبيعات كامل في إكسل، بدون ولا سطر كود.<br>' +
+      'الإعلان والملفات والشروحات كلها بتنزل في <b>قروب التيليجرام</b>، فانضم الحين عشان ما يفوتك شي.</div>' +
+      '<a href="' + TG_URL + '" style="display:inline-block;background:#21C063;color:#06121f;font-size:18px;font-weight:bold;text-decoration:none;padding:13px 34px;border-radius:999px">انضم لقروب التيليجرام</a>' +
+      '<div style="font-size:13px;color:#9fb0d0;margin-top:18px;line-height:1.8">في القروب: كل مقاطعنا مع شرح مكتوب، وملفات التطبيق، وتقدر تسأل عن أي شي في إكسل.</div>' +
+      '<div style="font-size:12px;color:#9fb0d0;margin-top:12px">الرابط: <span style="direction:ltr;color:#7DFAA6">t.me/Ibrahimexcel</span></div>' +
+    '</td></tr>' +
+    '<tr><td style="padding:16px 6px 0;font-size:12px;color:#9fb0d0;line-height:1.8;text-align:center">وصلك الإيميل لأنك سجّلت وأكّدت إيميلك في اختبار مستوى إكسل.<br>ما تبي توصلك رسايلنا؟ رد على هالإيميل بكلمة «إلغاء».<br>' +
+      '<a href="https://www.tiktok.com/@ibrahim.tech47" style="color:#7DFAA6;text-decoration:none">@ibrahim.tech47</a></td></tr>' +
+  '</table></td></tr></table></body></html>';
+}
+
+function sendInvite_(email, name, level) {
+  MailApp.sendEmail({
+    to: email,
+    name: 'إبراهيم تِك | إكسل',
+    subject: 'دورتنا المجانية قرّبت 🎓 انضم لقروب التيليجرام',
+    body: 'دورة «من الصفر إلى داشبورد احترافي» قرّبت، والإعلان والملفات بتنزل في قروب التيليجرام: ' + TG_URL,
+    htmlBody: inviteHtml_(html_(name).slice(0, 60), level)
+  });
+}
+
+function testTelegramInvite() {
+  const me = Session.getEffectiveUser().getEmail();
+  sendInvite_(me, 'إبراهيم', 'متوسط');
+  Logger.log('انرسلت نسخة تجريبية إلى ' + me);
+}
+
+function sendTelegramInvite() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const tabs = ss.getSheets().filter(s => s.getName().indexOf('المسجلين') === 0);
+  let sent = 0, skipped = 0, left = 0;
+  const done = {};
+  for (const sh of tabs) {
+    const v = sh.getDataRange().getValues();
+    if (v.length < 2) continue;
+    const h = v[0];
+    let ic = h.indexOf('دعوة التيليجرام');
+    if (ic < 0) { ic = h.length; sh.getRange(1, ic + 1).setValue('دعوة التيليجرام'); }
+    const ec = h.indexOf('إيميل'), cc = h.indexOf('إيميل مؤكد'), nc = h.indexOf('الاسم'), lc = h.indexOf('المستوى');
+    if (ec < 0 || cc < 0) continue;
+    for (let r = 1; r < v.length; r++) {
+      const email = String(v[r][ec]).replace(/^'/, '').trim().toLowerCase();
+      if (!email || v[r][cc] !== 'نعم' || done[email]) { skipped++; continue; }
+      if (v[r][ic]) { done[email] = 1; skipped++; continue; }
+      if (MailApp.getRemainingDailyQuota() <= 2) { left++; continue; }
+      sendInvite_(email, String(v[r][nc] || '').replace(/^'/, ''), lc >= 0 ? v[r][lc] : '');
+      sh.getRange(r + 1, ic + 1).setValue(new Date());
+      done[email] = 1; sent++;
+    }
+  }
+  Logger.log('انرسلت: ' + sent + ' | ما تنطبق أو انرسلت قبل: ' + skipped + ' | باقي لبكرة (خلص الحد اليومي): ' + left);
+}
