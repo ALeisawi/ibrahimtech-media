@@ -174,7 +174,7 @@ function sendInvite_(email, name, level) {
 }
 
 function testTelegramInvite() {
-  const me = Session.getEffectiveUser().getEmail();
+  const me = SpreadsheetApp.getActiveSpreadsheet().getOwner().getEmail();
   sendInvite_(me, 'إبراهيم', 'متوسط');
   Logger.log('انرسلت نسخة تجريبية إلى ' + me);
 }
