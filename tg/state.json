@@ -40,12 +40,17 @@
    "id": 5108722195,
    "title": "Ibrahim",
    "type": "private"
+  },
+  {
+   "id": -1005943732772,
+   "title": "إبراهيم تِك | إكسل",
+   "type": "supergroup"
   }
  ],
  "errors": [],
  "bot_ok": true,
- "last_run": "2026-11-27 15:52:37",
- "updates_seen": 23,
+ "last_run": "2026-11-28 09:52:18",
+ "updates_seen": 33,
  "deleted": {
   "10": true
  },
@@ -326,5 +331,12 @@
    "dur": 26,
    "size": 2117379
   }
+ },
+ "chat_check": {
+  "ok": true,
+  "id": -1005943732772,
+  "type": "supergroup",
+  "username": "Ibrahimexcel",
+  "err": null
  }
 }
