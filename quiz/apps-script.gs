@@ -140,26 +140,28 @@ const TG_URL = 'https://t.me/Ibrahimexcel';
 
 function inviteHtml_(name, level) {
   const hi = name ? 'هلا ' + name + ' 👋' : 'هلا 👋';
-  const lv = level ? '<div style="display:inline-block;background:#ffffff;color:#0B1F4B;border-radius:10px;padding:6px 16px;font-size:14px;font-weight:bold;margin-bottom:18px">مستواك في الاختبار: <span style="color:#15803d">' + level + '</span></div>' : '';
-  return '<!doctype html><html dir="rtl" lang="ar"><body style="margin:0;padding:0;background:#0b1220">' +
-  '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0b1220;padding:28px 12px"><tr><td align="center">' +
+  const lv = level ? '<div style="display:inline-block;background-color:#ffffff;background-image:linear-gradient(#ffffff,#ffffff);color:#0B1F4B;border-radius:10px;padding:6px 16px;font-size:14px;font-weight:bold;margin-bottom:18px">مستواك في الاختبار: <span style="color:#15803d">' + level + '</span></div>' : '';
+  return '<!doctype html><html dir="rtl" lang="ar"><head><meta name="color-scheme" content="light only"><meta name="supported-color-schemes" content="light only">' +
+  '<style>:root{color-scheme:light only}u + .body .gs{background:#000;mix-blend-mode:screen}u + .body .gd{background:#000;mix-blend-mode:difference}</style></head>' +
+  '<body class="body" style="margin:0;padding:0;background-color:#0b1220;background-image:linear-gradient(#0b1220,#0b1220)">' +
+  '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0b1220;background-image:linear-gradient(#0b1220,#0b1220);padding:28px 12px"><tr><td align="center">' +
   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;font-family:Tahoma,Arial,sans-serif;color:#e8eefc;direction:rtl">' +
-    '<tr><td style="padding:0 6px 16px;font-size:18px;font-weight:bold">إبراهيم <span style="color:#21C063">تِك</span>' +
-      '<span style="float:left;font-size:12px;border:2px solid #21C063;border-radius:8px;padding:2px 8px;color:#e8eefc">Excel إكسل</span></td></tr>' +
-    '<tr><td style="background:#0B1F4B;border:3px solid #21C063;border-radius:22px;padding:30px 24px;text-align:center">' +
+    '<tr><td style="padding:0 6px 16px;font-size:18px;font-weight:bold"><div class="gs"><div class="gd">إبراهيم <span style="color:#21C063">تِك</span>' +
+      '<span style="float:left;font-size:12px;border:2px solid #21C063;border-radius:8px;padding:2px 8px;color:#e8eefc">Excel إكسل</span></div></div></td></tr>' +
+    '<tr><td style="background-color:#0B1F4B;background-image:linear-gradient(#0B1F4B,#0B1F4B);border:3px solid #21C063;border-radius:22px;padding:30px 24px;text-align:center"><div class="gs"><div class="gd">' +
       '<div style="font-size:15px;color:#9fb0d0;margin-bottom:6px">' + hi + '</div>' +
       '<div style="font-size:26px;font-weight:bold;line-height:1.4;margin-bottom:12px">دورتنا المجانية قرّبت 🎓</div>' +
       lv +
       '<div style="font-size:16px;line-height:1.9;color:#e8eefc;margin-bottom:20px">«<b style="color:#7DFAA6">من الصفر إلى داشبورد احترافي</b>»<br>' +
       'نبني فيها مع بعض داشبورد مبيعات كامل في إكسل، بدون ولا سطر كود.<br>' +
       'الإعلان والملفات والشروحات كلها بتنزل في <b>قروب التيليجرام</b>، فانضم الحين عشان ما يفوتك شي.</div>' +
-      '<div style="background:#12274D;border:2px dashed #7DFAA6;border-radius:14px;padding:12px 14px;font-size:15px;line-height:1.8;margin-bottom:20px">🎁 وعدناك بكود خصم على الدورة… وصار أحسن:<br><b style="color:#7DFAA6">الدورة كاملة مجانية لك</b></div>' +
-      '<a href="' + TG_URL + '" style="display:inline-block;background:#21C063;color:#06121f;font-size:18px;font-weight:bold;text-decoration:none;padding:13px 34px;border-radius:999px">انضم لقروب التيليجرام</a>' +
+      '<div style="background-color:#12274D;background-image:linear-gradient(#12274D,#12274D);border:2px dashed #7DFAA6;border-radius:14px;padding:12px 14px;font-size:15px;line-height:1.8;margin-bottom:20px">🎁 وعدناك بكود خصم على الدورة… وصار أحسن:<br><b style="color:#7DFAA6">الدورة كاملة مجانية لك</b></div>' +
+      '<a href="' + TG_URL + '" style="display:inline-block;background-color:#21C063;background-image:linear-gradient(#21C063,#21C063);color:#06121f;font-size:18px;font-weight:bold;text-decoration:none;padding:13px 34px;border-radius:999px">انضم لقروب التيليجرام</a>' +
       '<div style="font-size:13px;color:#9fb0d0;margin-top:18px;line-height:1.8">في القروب: كل مقاطعنا مع شرح مكتوب، وملفات التطبيق، وتقدر تسأل عن أي شي في إكسل.</div>' +
       '<div style="font-size:12px;color:#9fb0d0;margin-top:12px">الرابط: <span style="direction:ltr;color:#7DFAA6">t.me/Ibrahimexcel</span></div>' +
-    '</td></tr>' +
-    '<tr><td style="padding:16px 6px 0;font-size:12px;color:#9fb0d0;line-height:1.8;text-align:center">وصلك الإيميل لأنك سجّلت وأكّدت إيميلك في اختبار مستوى إكسل.<br>ما تبي توصلك رسايلنا؟ رد على هالإيميل بكلمة «إلغاء».<br>' +
-      '<a href="https://www.tiktok.com/@ibrahim.tech47" style="color:#7DFAA6;text-decoration:none">@ibrahim.tech47</a></td></tr>' +
+    '</div></div></td></tr>' +
+    '<tr><td style="padding:16px 6px 0;font-size:12px;color:#9fb0d0;line-height:1.8;text-align:center"><div class="gs"><div class="gd">وصلك الإيميل لأنك سجّلت وأكّدت إيميلك في اختبار مستوى إكسل.<br>ما تبي توصلك رسايلنا؟ رد على هالإيميل بكلمة «إلغاء».<br>' +
+      '<a href="https://www.tiktok.com/@ibrahim.tech47" style="color:#7DFAA6;text-decoration:none">@ibrahim.tech47</a></div></div></td></tr>' +
   '</table></td></tr></table></body></html>';
 }
 
