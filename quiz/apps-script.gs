@@ -23,11 +23,11 @@ function emailHtml_(name, level, url) {
     '<tr><td style="background:#0B1F4B;border:3px solid #21C063;border-radius:22px;padding:30px 24px;text-align:center">' +
       '<div style="font-size:15px;color:#9fb0d0;margin-bottom:6px">هلا ' + name + ' 👋</div>' +
       '<div style="font-size:26px;font-weight:bold;line-height:1.4;margin-bottom:10px">باقي ضغطة وحدة</div>' +
-      '<div style="font-size:16px;line-height:1.8;color:#e8eefc;margin-bottom:18px">أكّد إيميلك، ويوصلك <b style="color:#7DFAA6">كود خصم خاص 🎁</b><br>أول ما تنزل دورة مستوى «' + level + '».</div>' +
+      '<div style="font-size:16px;line-height:1.8;color:#e8eefc;margin-bottom:18px">أكّد إيميلك، ويوصلك <b style="color:#7DFAA6">إعلان الدورة المجانية 🎁</b><br>«من الصفر إلى داشبورد احترافي».</div>' +
       '<table role="presentation" cellpadding="0" cellspacing="0" align="center" style="margin:0 auto 18px;border-collapse:collapse;direction:ltr;background:#ffffff;border-radius:10px">' +
-        '<tr><td colspan="2" style="background:#f3f4f6;color:#374151;font:13px monospace;padding:6px 12px;text-align:left;border-radius:10px 10px 0 0">fx &nbsp;=IF(Confirmed,"🎁")</td></tr>' +
+        '<tr><td colspan="2" style="background:#f3f4f6;color:#374151;font:13px monospace;padding:6px 12px;text-align:left;border-radius:10px 10px 0 0">fx &nbsp;=IF(Confirmed,"🎓")</td></tr>' +
         '<tr><td style="background:#e5e7eb;color:#4b5563;font:bold 12px Arial;padding:10px 10px;border-radius:0 0 0 10px">1</td>' +
-        '<td style="color:#15803d;font:bold 18px Tahoma,Arial;padding:10px 26px;border:3px solid #21C063;background:#f0fdf4;border-radius:0 0 10px 0">كود الخصم</td></tr></table>' +
+        '<td style="color:#15803d;font:bold 18px Tahoma,Arial;padding:10px 26px;border:3px solid #21C063;background:#f0fdf4;border-radius:0 0 10px 0">دورة مجانية</td></tr></table>' +
       '<a href="' + url + '" style="display:inline-block;background:#21C063;color:#06121f;font-size:18px;font-weight:bold;text-decoration:none;padding:13px 34px;border-radius:999px">أكّد إيميلي</a>' +
       '<div style="font-size:12px;color:#9fb0d0;margin-top:18px;line-height:1.7">إذا الزر ما اشتغل، انسخ هالرابط في المتصفح:<br><span style="direction:ltr;word-break:break-all;color:#7DFAA6">' + url + '</span></div>' +
     '</td></tr>' +
@@ -56,7 +56,7 @@ function sendConfirm_(email, name, level, token) {
   MailApp.sendEmail({
     to: email,
     name: 'إبراهيم تِك | إكسل',
-    subject: 'باقي ضغطة وحدة ويوصلك كود الخصم 🎁',
+    subject: 'باقي ضغطة وحدة ويوصلك إعلان الدورة المجانية 🎓',
     body: 'أكّد إيميلك من هنا: ' + CONFIRM_PAGE + '?t=' + token,
     htmlBody: emailHtml_(html_(name).slice(0, 60), level, CONFIRM_PAGE + '?t=' + token)
   });
