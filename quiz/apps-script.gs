@@ -153,6 +153,7 @@ function inviteHtml_(name, level) {
       '<div style="font-size:16px;line-height:1.9;color:#e8eefc;margin-bottom:20px">«<b style="color:#7DFAA6">من الصفر إلى داشبورد احترافي</b>»<br>' +
       'نبني فيها مع بعض داشبورد مبيعات كامل في إكسل، بدون ولا سطر كود.<br>' +
       'الإعلان والملفات والشروحات كلها بتنزل في <b>قروب التيليجرام</b>، فانضم الحين عشان ما يفوتك شي.</div>' +
+      '<div style="background:#12274D;border:2px dashed #7DFAA6;border-radius:14px;padding:12px 14px;font-size:15px;line-height:1.8;margin-bottom:20px">🎁 وعدناك بكود خصم على الدورة… وصار أحسن:<br><b style="color:#7DFAA6">الدورة كاملة مجانية لك</b></div>' +
       '<a href="' + TG_URL + '" style="display:inline-block;background:#21C063;color:#06121f;font-size:18px;font-weight:bold;text-decoration:none;padding:13px 34px;border-radius:999px">انضم لقروب التيليجرام</a>' +
       '<div style="font-size:13px;color:#9fb0d0;margin-top:18px;line-height:1.8">في القروب: كل مقاطعنا مع شرح مكتوب، وملفات التطبيق، وتقدر تسأل عن أي شي في إكسل.</div>' +
       '<div style="font-size:12px;color:#9fb0d0;margin-top:12px">الرابط: <span style="direction:ltr;color:#7DFAA6">t.me/Ibrahimexcel</span></div>' +
